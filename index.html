@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#121013">
+<meta name="description" content="Pack Plan is a free budget tool by Ravenous Wolves. Your data stays on this device.">
+<!-- Replace DOMAIN with the real host at launch. The app is served under /pack-plan/. -->
+<link rel="canonical" href="https://DOMAIN/pack-plan/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pack Plan">
+<meta property="og:description" content="Pack Plan is a free budget tool by Ravenous Wolves. Your data stays on this device. Not financial advice.">
+<meta property="og:url" content="https://DOMAIN/pack-plan/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pack Plan">
+<meta name="twitter:description" content="Pack Plan is a free budget tool by Ravenous Wolves. Your data stays on this device. Not financial advice.">
+<meta name="application-name" content="Pack Plan">
+<meta name="apple-mobile-web-app-title" content="Pack Plan">
+<link rel="manifest" href="manifest.json">
+<script>
+/* Apply the saved theme before first paint so there's no flash. Default: dark. */
+(function(){var K='rwBudget.theme',M={dark:'#121013',light:'#f7f5f2'};
+  function pref(){try{return localStorage.getItem(K)||'dark'}catch(e){return'dark'}}
+  function apply(){var t=pref()==='light'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',t);
+    var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',M[t])}
+  window.__theme={key:K,pref:pref,apply:apply,set:function(p){try{localStorage.setItem(K,p)}catch(e){}apply()}};
+  apply();
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='190 120 644 810'%3E%3Crect x='190' y='120' width='644' height='810' fill='%23121013'/%3E%3Cpath%20fill=%22%23ffffff%22%20fill-rule=%22evenodd%22%20d=%22M%20618.50%20793.00%20L%20617.50%20795.00%20L%20615.00%20797.00%20L%20614.50%20798.50%20L%20612.50%20800.00%20L%20611.50%20802.00%20L%20606.00%20808.00%20L%20605.50%20809.50%20L%20603.00%20811.50%20L%20603.00%20812.50%20L%20600.00%20815.00%20L%20600.00%20816.00%20L%20597.50%20818.00%20L%20597.50%20819.00%20L%20595.00%20821.00%20L%20594.50%20822.50%20L%20590.50%20827.00%20L%20586.00%20827.00%20L%20585.50%20828.00%20L%20545.00%20830.00%20L%20547.00%20837.00%20L%20548.50%20839.00%20L%20549.50%20843.50%20L%20551.00%20845.50%20L%20553.00%20853.00%20L%20554.50%20854.50%20L%20554.50%20855.50%20L%20558.50%20857.00%20L%20559.00%20858.00%20L%20565.00%20860.00%20L%20566.00%20861.50%20L%20561.00%20869.00%20L%20561.00%20870.00%20L%20559.00%20872.00%20L%20559.00%20873.00%20L%20556.00%20877.00%20L%20554.50%20880.50%20L%20552.00%20883.50%20L%20551.50%20885.50%20L%20550.00%20886.50%20L%20548.50%20890.50%20L%20547.00%20891.50%20L%20545.50%20895.00%20L%20544.00%20896.00%20L%20542.00%20900.50%20L%20593.50%20901.00%20L%20614.50%20886.00%20L%20630.00%20855.00%20L%20631.00%20849.50%20L%20631.00%20842.00%20L%20632.00%20841.50%20L%20632.00%20834.50%20L%20632.50%20834.00%20L%20632.00%20828.00%20L%20630.50%20826.00%20L%20629.00%20820.00%20L%20628.00%20819.50%20L%20628.00%20818.00%20L%20627.00%20816.50%20L%20626.00%20811.50%20L%20624.50%20810.00%20L%20624.00%20806.50%20L%20622.00%20803.00%20L%20620.50%20797.00%20L%20619.00%20795.50%20Z%22/%3E%3Cpath%20fill=%22%23ffffff%22%20fill-rule=%22evenodd%22%20d=%22M%20425.50%20793.00%20L%20425.00%20795.50%20L%20423.50%20797.00%20L%20422.00%20803.00%20L%20420.00%20806.50%20L%20419.50%20810.00%20L%20418.00%20811.50%20L%20417.00%20816.50%20L%20416.00%20818.00%20L%20416.00%20819.50%20L%20415.00%20820.00%20L%20413.50%20826.00%20L%20412.00%20828.00%20L%20411.50%20834.00%20L%20412.00%20834.50%20L%20412.00%20841.50%20L%20413.00%20842.00%20L%20413.00%20849.50%20L%20414.00%20855.00%20L%20429.50%20886.00%20L%20450.50%20901.00%20L%20502.00%20900.50%20L%20500.00%20896.00%20L%20498.50%20895.00%20L%20498.00%20893.00%20L%20495.50%20890.50%20L%20494.00%20886.50%20L%20492.50%20885.50%20L%20492.00%20883.50%20L%20489.50%20880.50%20L%20488.00%20877.00%20L%20485.00%20873.00%20L%20485.00%20872.00%20L%20483.00%20870.00%20L%20483.00%20869.00%20L%20478.00%20861.50%20L%20479.00%20860.00%20L%20485.00%20858.00%20L%20485.50%20857.00%20L%20489.50%20855.50%20L%20489.50%20854.50%20L%20491.00%20853.00%20L%20493.00%20845.50%20L%20494.50%20843.50%20L%20495.50%20839.00%20L%20497.00%20837.00%20L%20499.00%20830.00%20L%20458.50%20828.00%20L%20458.00%20827.00%20L%20453.50%20827.00%20L%20449.50%20822.50%20L%20449.00%20821.00%20L%20446.50%20819.00%20L%20446.50%20818.00%20L%20444.00%20816.00%20L%20444.00%20815.00%20L%20438.50%20809.50%20L%20438.00%20808.00%20L%20432.50%20802.00%20L%20431.50%20800.00%20L%20429.50%20798.50%20L%20429.00%20797.00%20L%20426.50%20795.00%20Z%22/%3E%3Cpath%20fill=%22%23ffffff%22%20fill-rule=%22evenodd%22%20d=%22M%20205.00%20134.50%20L%20212.50%20467.00%20L%20313.00%20633.50%20L%20445.00%20778.00%20L%20599.00%20778.00%20L%20731.00%20633.50%20L%20831.50%20467.00%20L%20839.00%20134.50%20L%20571.00%20420.50%20L%20525.00%20553.00%20L%20522.50%20546.50%20L%20518.50%20552.50%20L%20473.00%20420.50%20Z%20M%20751.50%20356.50%20L%20757.00%20369.50%20L%20647.50%20626.50%20L%20634.00%20624.00%20L%20602.00%20566.50%20L%20594.50%20565.50%20L%20593.00%20660.50%20L%20611.50%20739.00%20L%20600.00%20749.50%20L%20586.50%20706.50%20L%20586.00%20658.00%20L%20579.50%20647.50%20L%20567.50%20531.50%20L%20636.50%20453.00%20L%20730.50%20368.00%20Z%20M%20292.50%20356.50%20L%20313.50%20368.00%20L%20407.50%20453.00%20L%20476.50%20531.50%20L%20464.50%20647.50%20L%20458.00%20658.00%20L%20457.50%20706.50%20L%20444.00%20749.50%20L%20432.50%20739.00%20L%20451.00%20660.50%20L%20449.50%20565.50%20L%20442.00%20566.50%20L%20410.00%20624.00%20L%20396.50%20626.50%20L%20287.00%20369.50%20Z%22/%3E%3Cpath%20fill=%22%23cc5f02%22%20fill-rule=%22evenodd%22%20d=%22M%20697.00%20435.50%20L%20694.00%20435.00%20L%20692.50%20434.00%20L%20691.00%20436.00%20L%20690.00%20436.00%20L%20688.00%20438.50%20L%20686.00%20439.50%20L%20685.00%20441.00%20L%20682.50%20442.50%20L%20679.00%20446.00%20L%20678.00%20446.00%20L%20671.00%20453.00%20L%20669.50%20453.50%20L%20667.00%20456.50%20L%20666.00%20456.50%20L%20664.00%20459.00%20L%20662.00%20460.00%20L%20659.00%20463.00%20L%20657.50%20463.50%20L%20655.00%20466.50%20L%20654.00%20466.50%20L%20652.00%20469.00%20L%20646.50%20473.00%20L%20643.00%20477.00%20L%20642.00%20477.00%20L%20638.50%20480.50%20L%20636.50%20481.50%20L%20635.00%20483.50%20L%20633.50%20484.00%20L%20631.00%20487.00%20L%20630.00%20487.00%20L%20628.00%20489.50%20L%20626.00%20490.50%20L%20625.00%20492.00%20L%20622.50%20493.50%20L%20619.00%20497.00%20L%20618.00%20497.00%20L%20614.50%20501.00%20L%20612.50%20502.00%20L%20611.00%20504.00%20L%20609.50%20504.50%20L%20607.00%20507.50%20L%20606.00%20507.50%20L%20604.00%20510.00%20L%20602.00%20511.00%20L%20599.00%20514.00%20L%20597.50%20514.50%20L%20592.50%20519.50%20L%20596.50%20519.00%20L%20597.50%20518.00%20L%20599.50%20518.00%20L%20602.50%20517.00%20L%20611.00%20516.00%20L%20612.00%20515.00%20L%20614.00%20515.00%20L%20614.50%20514.50%20L%20625.50%20513.00%20L%20626.50%20512.00%20L%20640.00%20510.00%20L%20641.00%20509.00%20L%20655.00%20507.00%20L%20656.00%20506.00%20L%20668.00%20504.00%20L%20668.00%20503.00%20L%20671.00%20497.50%20L%20672.00%20493.50%20L%20673.00%20493.00%20L%20673.50%20490.50%20L%20674.50%20489.00%20L%20674.50%20487.50%20L%20676.00%20486.00%20L%20676.00%20484.50%20L%20677.00%20483.00%20L%20678.00%20479.00%20L%20679.50%20477.50%20L%20680.50%20473.00%20L%20682.50%20470.50%20L%20682.50%20469.00%20L%20683.50%20467.50%20L%20684.00%20465.00%20L%20685.50%20463.00%20L%20686.00%20460.50%20L%20687.00%20459.00%20L%20687.00%20457.50%20L%20688.50%20456.00%20L%20690.00%20450.50%20L%20691.00%20450.00%20L%20692.00%20446.00%20L%20694.00%20443.00%20L%20695.00%20439.00%20Z%22/%3E%3Cpath%20fill=%22%23cc5f02%22%20fill-rule=%22evenodd%22%20d=%22M%20347.00%20435.50%20L%20348.00%20436.50%20L%20350.00%20443.00%20L%20352.00%20446.00%20L%20353.00%20450.00%20L%20354.00%20450.50%20L%20355.50%20456.00%20L%20357.00%20457.50%20L%20357.00%20459.00%20L%20358.00%20460.50%20L%20358.50%20463.00%20L%20360.00%20465.00%20L%20360.50%20467.50%20L%20361.50%20469.00%20L%20361.50%20470.50%20L%20363.50%20473.00%20L%20364.50%20477.50%20L%20366.00%20479.00%20L%20367.00%20483.00%20L%20368.00%20484.50%20L%20368.00%20486.00%20L%20369.50%20487.50%20L%20369.50%20489.00%20L%20370.50%20490.50%20L%20371.00%20493.00%20L%20372.00%20493.50%20L%20373.00%20497.50%20L%20376.00%20503.00%20L%20376.00%20504.00%20L%20388.00%20506.00%20L%20389.00%20507.00%20L%20403.00%20509.00%20L%20404.00%20510.00%20L%20415.00%20511.50%20L%20415.50%20512.00%20L%20417.50%20512.00%20L%20418.50%20513.00%20L%20429.50%20514.50%20L%20430.00%20515.00%20L%20432.00%20515.00%20L%20433.00%20516.00%20L%20441.50%20517.00%20L%20442.00%20517.50%20L%20446.50%20518.00%20L%20447.50%20519.00%20L%20451.50%20519.50%20L%20446.50%20514.50%20L%20445.00%20514.00%20L%20442.00%20511.00%20L%20440.00%20510.00%20L%20438.00%20507.50%20L%20437.00%20507.50%20L%20434.50%20504.50%20L%20433.00%20504.00%20L%20431.50%20502.00%20L%20429.50%20501.00%20L%20426.00%20497.00%20L%20425.00%20497.00%20L%20421.50%20493.50%20L%20419.00%20492.00%20L%20418.00%20490.50%20L%20416.00%20489.50%20L%20414.00%20487.00%20L%20413.00%20487.00%20L%20410.50%20484.00%20L%20409.00%20483.50%20L%20407.50%20481.50%20L%20405.50%20480.50%20L%20402.00%20477.00%20L%20401.00%20477.00%20L%20397.50%20473.00%20L%20392.00%20469.00%20L%20390.00%20466.50%20L%20389.00%20466.50%20L%20386.50%20463.50%20L%20385.00%20463.00%20L%20382.00%20460.00%20L%20380.00%20459.00%20L%20378.00%20456.50%20L%20377.00%20456.50%20L%20374.50%20453.50%20L%20373.00%20453.00%20L%20366.00%20446.00%20L%20365.00%20446.00%20L%20361.50%20442.50%20L%20359.00%20441.00%20L%20358.00%20439.50%20L%20356.00%20438.50%20L%20354.00%20436.00%20L%20353.00%20436.00%20L%20351.50%20434.00%20L%20350.00%20435.00%20Z%22/%3E%3C/svg%3E">
+<title>Pack Plan</title>
+<style>
+:root{
+  --r:4px;
+  --nav:72px;
+  color-scheme:dark;
+  --bg:#121013;
+  --card:#1c191d;
+  --card2:#262228;
+  --navbg:#121013;
+  --ink:#f7f5f2;
+  --muted:#a19c97;
+  --line:#3a3639;
+  --body-ink:#e8e4e0;
+  --accent:#cc5f02;
+  --accent-ink:#cc5f02;
+  --on-accent:#121013;
+  --up:#8fbc7a;
+  --down:#e39285;
+  --gold:#cc5f02;
+  --tag-ink:#cc5f02;
+  --hole:#121013;
+  --brief-bg:#1c191d;
+  --brief-line:#3a3639;
+  --stat-bg:#262228;
+  --ring-track:#2e2a2f;
+  --on-tag:#121013;
+  --down-bg:#241618;
+  --font-display:Teko,Impact,"Arial Narrow",sans-serif;
+  --font-body:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f7f5f2;
+  --card:#ffffff;
+  --card2:#efece8;
+  --navbg:#f7f5f2;
+  --ink:#121013;
+  --muted:#5c5854;
+  --line:#e9e5e0;
+  --body-ink:#1c191d;
+  --accent:#cc5f02;
+  --accent-ink:#9a4700;
+  --on-accent:#121013;
+  --up:#276334;
+  --down:#8f3832;
+  --gold:#9a4700;
+  --tag-ink:#9a4700;
+  --hole:#f7f5f2;
+  --brief-bg:#ffffff;
+  --brief-line:#e9e5e0;
+  --stat-bg:#efece8;
+  --ring-track:#e9e5e0;
+  --on-tag:#f7f5f2;
+  --down-bg:#f3ebe9;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--font-body)}
+body{max-width:520px;margin:0 auto;padding-bottom:calc(var(--nav) + 18px + env(safe-area-inset-bottom))}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent-ink)}
+h1,h2,h3,.big,.wordmark,.month-label,nav.tabs button,.btn,.pagetitle h2,.tag,.paid-btn,.stat b{
+  font-family:var(--font-display);
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  font-synthesis:none;
+}
+.ico{display:inline-block;vertical-align:middle;flex:none}
+
+/* Focus */
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.f input:focus-visible,label.f select:focus-visible,label.f textarea:focus-visible,
+#extra-pay:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:1px;
+  border-color:var(--accent);
+}
+
+/* Header + brand lockup */
+.top{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:10px;
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.brand-text{display:flex;flex-direction:column;justify-content:center;min-width:0;line-height:1}
+.wordmark{margin:0;font-size:22px;line-height:1;font-weight:700;letter-spacing:.06em;white-space:nowrap}
+.wordmark .wm-r{color:var(--ink)}
+.wordmark .wm-w{color:var(--accent)}
+.top h1{
+  font-size:24px;margin:0;font-weight:700;letter-spacing:.08em;
+  white-space:nowrap;color:var(--ink);line-height:1;
+}
+.byline{
+  margin:4px 0 0;font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);line-height:1;
+  font-family:var(--font-display);white-space:nowrap;
+}
+.byline .wm-r{color:var(--ink)}
+.byline .wm-w{color:var(--accent)}
+.hero-empty h2{
+  margin:0 0 6px;font-size:40px;font-weight:700;letter-spacing:.08em;color:var(--ink)
+}
+.hero-empty .byline{font-size:14px;letter-spacing:.16em;margin:0 0 16px}
+.hero-empty .byline + p{margin-top:0}
+
+.top .sp{flex:1}
+.iconbtn{
+  display:grid;place-items:center;
+  width:44px;height:44px;min-width:44px;min-height:44px;
+  border-radius:4px;border:1px solid var(--line);
+  background:var(--card);color:var(--muted);
+}
+.iconbtn:hover{color:var(--ink);border-color:var(--ink)}
+
+/* Logo */
+.logo-wrap{display:inline-grid;flex:none;place-items:center;width:44px;height:44px}
+.logo-wrap .logo-mark{grid-area:1/1;display:block;width:100%;height:100%}
+.logo-mark{display:block;flex:none;border-radius:0}
+.logo-wrap .logo-light{display:none}
+:root[data-theme="light"] .logo-wrap .logo-dark{display:none}
+:root[data-theme="light"] .logo-wrap .logo-light{display:block}
+
+main{padding:16px 16px 0}
+
+/* Cards */
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:16px;
+  margin-bottom:16px;
+}
+.card h2{
+  display:flex;align-items:center;gap:8px;
+  font-size:18px;margin:0 0 12px;font-weight:600;
+  letter-spacing:.08em;line-height:1.15;
+}
+.card h2 .r{margin-left:auto;font-size:16px;color:var(--muted);font-weight:600;letter-spacing:.04em;font-family:var(--font-display)}
+.card h2 .ico{color:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:12.5px}
+.tag{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 6px;border-radius:2px;
+  background:transparent;border:1px solid var(--accent);color:var(--tag-ink);
+  vertical-align:middle;line-height:1.2;
+}
+.tag.up{border-color:var(--up);color:var(--up)}
+.tag.down{border-color:var(--down);color:var(--down)}
+.tag.accent{border-color:var(--accent);color:var(--accent-ink)}
+.up{color:var(--up)}
+.down{color:var(--down)}
+
+.pagetitle{display:flex;align-items:center;gap:10px;margin:2px 2px 14px}
+.pagetitle h2{margin:0;font-size:28px;font-weight:600;letter-spacing:.08em;line-height:1}
+.pagetitle .sp{flex:1}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  border:0;border-radius:4px;
+  padding:10px 16px;min-height:44px;
+  font-size:16px;font-weight:600;letter-spacing:.1em;
+  background:var(--accent);color:var(--on-accent);
+}
+.btn:hover{filter:brightness(1.08)}
+:root[data-theme="light"] .btn:hover{filter:brightness(.96)}
+.btn.ghost{background:var(--card2);color:var(--ink);border:1px solid var(--line);filter:none}
+.btn.ghost:hover{border-color:var(--ink);filter:none}
+.btn.danger{
+  background:transparent;color:var(--down);
+  border:1px solid var(--down);filter:none;
+}
+.btn.danger:hover{background:var(--down);color:var(--bg);filter:none}
+.btn.sm{padding:8px 12px;font-size:14px;min-height:44px;border-radius:4px}
+.btn.block{width:100%}
+
+/* Hero month brief */
+.brief{background:var(--brief-bg);border:1px solid var(--brief-line);border-left:3px solid var(--accent);border-radius:var(--r)}
+.brief h2 .ico{color:var(--accent)}
+.brief p{margin:0 0 8px}
+.brief .stats{display:flex;gap:8px;margin-top:14px}
+.brief .stat,.stat{
+  flex:1;background:var(--stat-bg);border-radius:4px;padding:10px 12px;
+}
+.brief .stat b,.stat b{display:block;font-size:20px;font-weight:600;letter-spacing:.04em;margin-top:2px;line-height:1.1;color:var(--ink);text-transform:none}
+.brief .stat span,.stat span{display:block;font-size:11px;color:var(--muted);font-weight:600;font-family:var(--font-display);letter-spacing:.1em;text-transform:uppercase}
+.big{
+  font-size:52px;font-weight:700;letter-spacing:.02em;line-height:1;
+  color:var(--accent);text-transform:none;
+}
+.big.down{color:var(--down)}
+.big.up{color:var(--up)}
+.subbig{font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:500}
+
+/* Rows */
+.row{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 2px;min-height:52px;
+  border-top:1px solid var(--line);
+  background:none;border-left:0;border-right:0;border-bottom:0;
+  width:100%;text-align:left;color:inherit;
+}
+.row:first-of-type{border-top:0}
+.row .mid{flex:1;min-width:0}
+.row .mid > b{display:block;font-size:15px;font-weight:600;font-family:var(--font-body);letter-spacing:0;text-transform:none}
+.row .mid > span,.row .mid .meta{
+  display:block;font-size:12.5px;color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-family:var(--font-body);letter-spacing:0;text-transform:none;font-weight:400;
+}
+.row .mid .tag{display:inline-block;white-space:nowrap;overflow:visible;font-size:11px;margin-right:4px;vertical-align:middle}
+.row .end{text-align:right;flex:none}
+.row .end b{display:block;font-size:18px;font-weight:600;font-family:var(--font-display);letter-spacing:.04em;text-transform:none;line-height:1.1}
+.row .end span{font-size:11px;font-weight:600;color:var(--muted);font-family:var(--font-display);letter-spacing:.08em;text-transform:uppercase}
+
+.av{
+  width:40px;height:40px;border-radius:4px;
+  display:grid;place-items:center;flex:none;
+  background:var(--card2);color:var(--accent);border:1px solid var(--line);
+}
+.av.warn{background:transparent;color:var(--down);border-color:var(--down)}
+.av.gold{background:transparent;color:var(--accent);border-color:var(--accent)}
+.av.up{background:transparent;color:var(--up);border-color:var(--up)}
+
+/* Bars — flat, crisp */
+.bar{height:6px;background:var(--ring-track);border-radius:2px;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;border-radius:0;background:var(--accent);width:0;max-width:100%}
+.bar>i.warn{background:var(--accent)}
+.bar>i.over{background:var(--down);max-width:100%}
+.barhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px}
+.barhead b{font-family:var(--font-body);font-weight:600;letter-spacing:0;text-transform:none}
+.barhead span{color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* Segmented control */
+.seg{display:flex;background:var(--card2);border-radius:4px;padding:3px;gap:3px;border:1px solid var(--line)}
+.seg button{
+  flex:1;border:0;background:none;border-radius:2px;
+  padding:0;min-height:44px;
+  font-family:var(--font-display);font-weight:600;font-size:15px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.seg button.on{background:var(--accent);color:var(--on-accent)}
+
+/* Forms */
+label.f{display:block;font-size:12.5px;color:var(--muted);margin-bottom:10px;font-weight:500}
+label.f input,label.f select,label.f textarea,
+#extra-pay{
+  display:block;width:100%;margin-top:4px;
+  padding:12px 12px;min-height:44px;
+  border-radius:4px;border:1px solid var(--line);
+  background:var(--card2);font-size:16px;outline:none;
+  font-family:var(--font-body);font-variant-numeric:tabular-nums;
+}
+label.f textarea{min-height:72px;resize:vertical}
+label.f input:focus,label.f select:focus,label.f textarea:focus,#extra-pay:focus{border-color:var(--accent)}
+.frow{display:flex;gap:8px}.frow>*{flex:1;min-width:0}
+.err{color:var(--down);font-size:13px;min-height:1.2em;margin:0 0 8px}
+.hint{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
+.check{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:14.5px;font-weight:600;color:var(--ink);min-height:44px}
+.check input{width:20px;height:20px;accent-color:var(--accent);flex:none}
+.actions{display:flex;gap:8px;margin:12px 0 0}
+.actions .btn{flex:1}
+
+/* Tabs */
+nav.tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;
+  display:flex;justify-content:center;
+  background:var(--navbg);
+  border-top:1px solid var(--line);
+  padding:4px 6px calc(6px + env(safe-area-inset-bottom));
+}
+nav.tabs .in{display:flex;width:100%;max-width:520px}
+nav.tabs button{
+  flex:1;border:0;background:none;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;
+  padding:4px 0;min-height:56px;text-transform:uppercase;
+}
+nav.tabs button .pill{
+  display:grid;place-items:center;
+  width:48px;height:28px;border-radius:4px;
+}
+nav.tabs button.on{color:var(--accent-ink)}
+nav.tabs button.on .pill{background:transparent;box-shadow:inset 0 -2px 0 var(--accent)}
+nav.tabs button.on .ico{color:var(--accent)}
+
+/* Sheet, toast */
+.scrim{position:fixed;inset:0;background:rgba(18,16,19,.72);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet{
+  visibility:hidden;position:fixed;left:0;right:0;bottom:0;z-index:41;
+  max-width:520px;margin:0 auto;
+  background:var(--card);
+  border-top-left-radius:6px;border-top-right-radius:6px;
+  border:1px solid var(--line);
+  padding:10px 16px calc(18px + env(safe-area-inset-bottom));
+  transform:translateY(105%);transition:transform .25s;
+  max-height:92vh;overflow:auto;
+}
+.sheet .grab{width:36px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+.sheet h3{margin:0 0 14px;font-size:22px;font-weight:600;letter-spacing:.08em}
+body.sheet-open .scrim{opacity:1;pointer-events:auto}
+body.sheet-open .sheet{transform:none;visibility:visible}
+.toast{
+  position:fixed;left:50%;bottom:calc(var(--nav) + 24px);
+  transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--bg);
+  font-family:var(--font-display);font-weight:600;font-size:15px;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:10px 16px;border-radius:4px;
+  opacity:0;transition:.25s;z-index:50;pointer-events:none;
+  white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis;
+}
+.toast.on{opacity:1;transform:translateX(-50%)}
+
+.empty{text-align:center;color:var(--muted);padding:22px 12px;font-size:14px}
+.empty b{display:block;color:var(--ink);font-size:20px;margin:8px 0 4px;font-family:var(--font-display);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.empty .ico{color:var(--accent);opacity:1}
+.note{font-size:12.5px;color:var(--muted);margin:4px 4px 16px;line-height:1.55}
+.soft{
+  display:flex;gap:9px;align-items:flex-start;
+  background:transparent;
+  border:1px solid var(--accent);
+  border-left-width:3px;
+  border-radius:4px;
+  padding:10px 12px;font-size:13px;color:var(--muted);margin-bottom:10px;
+  text-wrap:pretty;
+}
+.soft.warn{background:transparent;border-color:var(--down);border-left-width:3px}
+.soft .ico{color:var(--accent);margin-top:1px;flex:none}
+.soft.warn .ico{color:var(--down)}
+.soft b{color:var(--ink)}
+.footer{text-align:center;font-size:11.5px;color:var(--muted);line-height:1.55;padding:8px 16px 20px}
+
+.row.overdue{
+  background:var(--down-bg);
+  margin:4px 0;
+  padding-left:12px;
+  padding-right:4px;
+  width:100%;
+  border-left:3px solid var(--down);
+  border-radius:0 2px 2px 0;
+}
+.paid-btn{
+  border:1px solid var(--line);background:var(--card2);color:var(--muted);
+  border-radius:4px;padding:0 10px;
+  min-height:44px;min-width:44px;
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;flex:none;
+}
+.paid-btn.on{background:var(--up);color:var(--bg);border-color:var(--up)}
+.del{border:0;background:none;color:var(--muted);padding:10px;min-width:44px;min-height:44px;border-radius:4px}
+
+.plan-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px;font-variant-numeric:tabular-nums}
+.plan-table th{
+  text-align:left;color:var(--muted);
+  font-family:var(--font-display);font-weight:600;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 6px;border-bottom:1px solid var(--line);
+}
+.plan-table td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.plan-table tr.done td{color:var(--up)}
+.plan-table .num{text-align:right;white-space:nowrap}
+
+.order-list{margin:0;padding:0;list-style:none}
+.order-list li{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);min-height:44px}
+.order-list li:first-child{border-top:0}
+.order-list .n{
+  width:28px;height:28px;border-radius:2px;
+  display:grid;place-items:center;
+  background:var(--accent);font-family:var(--font-display);
+  font-size:14px;font-weight:700;letter-spacing:0;color:var(--on-accent);flex:none;
+}
+.order-list .mid{flex:1;min-width:0}
+.order-list .mid b{display:block;font-size:14.5px;font-weight:600;font-family:var(--font-body);letter-spacing:0;text-transform:none}
+.order-list .mid span{display:block;font-size:12.5px;color:var(--muted);font-family:var(--font-body);letter-spacing:0;text-transform:none;font-weight:400}
+
+body.shot .top{position:relative}
+body.shot nav.tabs{position:relative;left:auto;right:auto;bottom:auto}
+body.shot .toast{display:none}
+body.shot{padding-bottom:18px}
+
+.live{font-size:13.5px;color:var(--accent-ink);font-weight:600;margin:0 0 10px;font-family:var(--font-body);letter-spacing:0;text-transform:none}
+
+.hero-empty{padding:36px 16px 28px;text-align:center}
+.hero-empty .logo-wrap{margin:0 auto 14px;width:88px;height:88px}
+.hero-empty .wordmark{font-size:32px;margin:0 0 4px}
+.hero-empty h2{margin:0 0 6px;font-size:40px;font-weight:700;letter-spacing:.08em;color:var(--ink)}
+.hero-empty p{margin:0 0 20px;color:var(--muted);font-size:14px;line-height:1.55}
+.hero-empty .btn{min-width:220px}
+.hero-empty .btn + .btn, .hero-empty .btn.ghost{margin-top:0}
+
+.breakdown{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}
+.breakdown .bk{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:var(--muted)}
+.breakdown .bk b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;min-height:44px}
+.toggle .lbl{font-size:14.5px;font-weight:600}
+.toggle .lbl span{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.switch{position:relative;width:44px;height:26px;flex:none}
+.switch input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;z-index:1}
+.switch i{position:absolute;inset:0;background:var(--card2);border:1px solid var(--line);border-radius:4px;transition:.15s;pointer-events:none}
+.switch i:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:var(--muted);border-radius:2px;transition:.15s}
+.switch input:checked+i{background:var(--accent);border-color:var(--accent)}
+.switch input:checked+i:before{transform:translateX(18px);background:var(--on-accent)}
+.switch input:focus-visible+i{outline:2px solid var(--accent);outline-offset:2px}
+
+.month-label{
+  font-size:13px;font-weight:600;color:var(--muted);
+  letter-spacing:.16em;text-transform:uppercase;margin:0 2px 12px;
+}
+.hidden-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+
+@media (prefers-reduced-motion:reduce){
+  .sheet,.scrim,.toast,.switch i,.switch i:before,.btn{transition:none;filter:none}
+}
+@media (min-width:521px){
+  body{border-left:1px solid var(--line);border-right:1px solid var(--line);min-height:100vh}
+  nav.tabs{left:auto;right:auto;width:520px;margin:0 auto}
+}
+
+/* Narrow-phone wrap fixes. Only apply below 431px so the 520px desktop column is unchanged. */
+@media (max-width: 430px){
+  .soft.warn > div{
+    text-wrap: balance;
+  }
+  .plan-table{table-layout:fixed;width:100%}
+  .plan-table .plan-month{width:3.2rem}
+  .plan-table th.num, .plan-table td.num{width:4.65rem}
+  .plan-table .debt-name{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <span id="brand" aria-hidden="true"></span>
+  <div class="brand-text pack-lead">
+    <h1>Pack Plan</h1>
+    <p class="byline">by <span class="wm-r">RAVENOUS</span> <span class="wm-w">WOLVES</span></p>
+  </div>
+  <span class="sp"></span>
+  <button class="iconbtn" id="gear" aria-label="Settings" data-act="view" data-view="settings"></button>
+</header>
+<main id="main"></main>
+<nav class="tabs" aria-label="Main"><div class="in" id="tabs"></div></nav>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"><div class="grab"></div><div id="sheetBody"></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+'use strict';
+const APP_NAME = 'Pack Plan';
+const STORE_KEY = 'rwBudget.v1';
+const THEME_KEY = 'rwBudget.theme';
+
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const INCOME_FREQ = {weekly:'Weekly',biweekly:'Every 2 weeks',semimonthly:'Twice a month',monthly:'Monthly',irregular:'Irregular'};
+const BILL_FREQ = {monthly:'Monthly',weekly:'Weekly',biweekly:'Every 2 weeks',quarterly:'Quarterly',yearly:'Yearly',once:'One-time'};
+const BILL_CATS = ['Housing','Utilities','Insurance','Subscriptions','Transportation','Health','Food','Debt','Other'];
+
+const P = {
+  overview:'<rect x="2.4" y="2.4" width="8.6" height="8.6" rx="2"/><rect x="13" y="2.4" width="8.6" height="5.6" rx="2"/><rect x="13" y="10" width="8.6" height="11.6" rx="2"/><rect x="2.4" y="13" width="8.6" height="8.6" rx="2"/>',
+  receipt:'<path fill-rule="evenodd" d="M5 2h14v20l-2.3-1.5-2.4 1.5-2.3-1.5-2.3 1.5-2.4-1.5L5 22Zm3 4.8h8v1.8H8Zm0 4h8v1.8H8Zm0 4h5v1.8H8Z"/>',
+  card:'<path fill-rule="evenodd" d="M3 6.2A2.2 2.2 0 0 1 5.2 4h13.6A2.2 2.2 0 0 1 21 6.2v11.6A2.2 2.2 0 0 1 18.8 20H5.2A2.2 2.2 0 0 1 3 17.8ZM5 8.4h14V7.1H5Zm0 2.3v7.2h14v-7.2Z"/><rect x="5.8" y="13.6" width="6.2" height="1.8" rx=".6"/>',
+  scale:'<rect x="11.1" y="4" width="1.8" height="15.2"/><rect x="6.5" y="19" width="11" height="2.2" rx="1.1"/><rect x="2.5" y="5.4" width="19" height="1.7" rx=".85"/><circle cx="12" cy="4.4" r="1.9"/><path d="M5 7.1 2 13.6h1.2L5 9.7l1.8 3.9H8Z"/><path d="M1.5 13.9h7a3.5 3.5 0 0 1-7 0Z"/><path d="M19 7.1 16 13.6h1.2L19 9.7l1.8 3.9H22Z"/><path d="M15.5 13.9h7a3.5 3.5 0 0 1-7 0Z"/>',
+  flag:'<path d="M6 2.4h1.9v19.2H6Z"/><path d="M8 3.2h11.4l-2.2 4.4 2.2 4.4H8Z"/>',
+  gear:'<path fill-rule="evenodd" d="M10.3 1.8h3.4l.5 2.6c.7.2 1.3.5 1.9.9l2.2-1.5 2.4 2.4-1.5 2.2c.4.6.7 1.2.9 1.9l2.6.5v3.4l-2.6.5c-.2.7-.5 1.3-.9 1.9l1.5 2.2-2.4 2.4-2.2-1.5c-.6.4-1.2.7-1.9.9l-.5 2.6h-3.4l-.5-2.6c-.7-.2-1.3-.5-1.9-.9l-2.2 1.5-2.4-2.4 1.5-2.2c-.4-.6-.7-1.2-.9-1.9l-2.6-.5v-3.4l2.6-.5c.2-.7.5-1.3.9-1.9L3.3 6.2l2.4-2.4 2.2 1.5c.6-.4 1.2-.7 1.9-.9ZM12 8.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 1 0 0-7.2Z"/>',
+  plus:'<path d="M10.7 3.5h2.6v7.2h7.2v2.6h-7.2v7.2h-2.6v-7.2H3.5v-2.6h7.2Z"/>',
+  trash:'<path d="M9 2h6l1 1.6h4.5v2.1h-17V3.6H8Z"/><path fill-rule="evenodd" d="M5 7h14l-1.2 13.1A2 2 0 0 1 15.8 22H8.2a2 2 0 0 1-2-1.9Zm3.9 2.6v9.2h1.7V9.6Zm4.5 0v9.2h1.7V9.6Z"/>',
+  pencil:'<path d="M3 17.3V21h3.7L17.6 10.1l-3.7-3.7Z"/><path d="m15.3 5 3.7 3.7 1.8-1.8a1.3 1.3 0 0 0 0-1.9L19 3.2a1.3 1.3 0 0 0-1.9 0Z"/>',
+  back:'<path d="M15.6 3.8 17.6 5.8 11.4 12l6.2 6.2-2 2L7.4 12Z"/>',
+  close:'<path d="M5.6 3.8 12 10.2l6.4-6.4 1.8 1.8-6.4 6.4 6.4 6.4-1.8 1.8-6.4-6.4-6.4 6.4-1.8-1.8 6.4-6.4-6.4-6.4Z"/>',
+  coin:'<path fill-rule="evenodd" d="M12 1.8a10.2 10.2 0 1 0 0 20.4 10.2 10.2 0 0 0 0-20.4Zm0 2.2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Z"/><path d="M12.9 6.3v1.2c1.3.2 2.3 1 2.6 2.2l-1.7.5c-.2-.6-.8-1-1.7-1-1 0-1.6.4-1.6 1 0 .5.4.8 1.8 1.1 2.1.5 3.2 1.3 3.2 2.9 0 1.3-1 2.3-2.6 2.6v1.2h-1.7v-1.2c-1.5-.2-2.6-1.1-2.9-2.4l1.8-.5c.2.8.9 1.2 1.9 1.2s1.7-.4 1.7-1.1c0-.5-.4-.9-1.9-1.2-2-.5-3.1-1.2-3.1-2.8 0-1.2.9-2.2 2.4-2.5V6.3Z"/>',
+  shield:'<path fill-rule="evenodd" d="M12 1.8 20.2 5v6c0 5.1-3.5 9.5-8.2 11.2C7.3 20.5 3.8 16.1 3.8 11V5Zm-1.3 13.9 5.8-5.8-1.5-1.5-4.3 4.3-2-2-1.5 1.5Z"/>',
+  warn:'<path d="M12 2.4 22.4 20.8H1.6Zm0 6.2-.1 5.6h.2L12 8.6Zm-.1 7.3h.2v2.2h-.2Z" fill-rule="evenodd"/>',
+  down:'<path d="M5 12.5 6.4 11l4.1 4.1V3.5h2v11.6L16.6 11 18 12.5 12.5 18Z"/>',
+  check:'<path d="M9.2 16.4 4.6 11.8l1.8-1.8 2.8 2.8 8.4-8.4 1.8 1.8Z"/>',
+  download:'<path d="M11.1 3.2h1.8v9.4l3.7-3.7 1.3 1.3-6 6-6-6 1.3-1.3 3.7 3.7Z"/><rect x="3.5" y="18.6" width="17" height="2.2" rx="1"/>',
+  upload:'<path d="M11.1 16.8h1.8V7.4l3.7 3.7 1.3-1.3-6-6-6 6 1.3 1.3 3.7-3.7Z"/><rect x="3.5" y="18.6" width="17" height="2.2" rx="1"/>',
+  moon:'<path d="M12.2 2.2a10 10 0 1 0 9.5 13.2A8 8 0 0 1 12.2 2.2Z"/>',
+  sun:'<circle cx="12" cy="12" r="4.2"/><rect x="11.1" y="1.6" width="1.8" height="3.4" rx=".9"/><rect x="11.1" y="19" width="1.8" height="3.4" rx=".9"/><rect x="1.6" y="11.1" width="3.4" height="1.8" rx=".9"/><rect x="19" y="11.1" width="3.4" height="1.8" rx=".9"/><rect x="11.1" y="1.6" width="1.8" height="3.4" rx=".9" transform="rotate(45 12 12)"/><rect x="11.1" y="1.6" width="1.8" height="3.4" rx=".9" transform="rotate(-45 12 12)"/><rect x="11.1" y="19" width="1.8" height="3.4" rx=".9" transform="rotate(45 12 12)"/><rect x="11.1" y="19" width="1.8" height="3.4" rx=".9" transform="rotate(-45 12 12)"/>',
+  calendar:'<path fill-rule="evenodd" d="M7 2.2h2v2.2h6V2.2h2v2.2h3.2A1.8 1.8 0 0 1 22 6.2V19a1.8 1.8 0 0 1-1.8 1.8H3.8A1.8 1.8 0 0 1 2 19V6.2A1.8 1.8 0 0 1 3.8 4.4H7Zm13 6.4H4V19h16Z"/>',
+  target:'<path fill-rule="evenodd" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm0 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 2.6A1.4 1.4 0 1 0 12 13.4 1.4 1.4 0 0 0 12 10.6Z"/>'
+};
+
+function ico(name, size){
+  size = size || 22;
+  return '<svg class="ico" width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'+(P[name]||'')+'</svg>';
+}
+
+function logoMark(size){
+  size = size || 32;
+  var vb = '190 120 644 810';
+  return '<span class="logo-wrap" style="width:'+size+'px;height:'+size+'px">'
+    +'<svg class="logo-mark logo-dark" width="'+size+'" height="'+size+'" viewBox="'+vb+'" aria-hidden="true"><path fill="#ffffff" fill-rule="evenodd" d="M 618.50 793.00 L 617.50 795.00 L 615.00 797.00 L 614.50 798.50 L 612.50 800.00 L 611.50 802.00 L 606.00 808.00 L 605.50 809.50 L 603.00 811.50 L 603.00 812.50 L 600.00 815.00 L 600.00 816.00 L 597.50 818.00 L 597.50 819.00 L 595.00 821.00 L 594.50 822.50 L 590.50 827.00 L 586.00 827.00 L 585.50 828.00 L 545.00 830.00 L 547.00 837.00 L 548.50 839.00 L 549.50 843.50 L 551.00 845.50 L 553.00 853.00 L 554.50 854.50 L 554.50 855.50 L 558.50 857.00 L 559.00 858.00 L 565.00 860.00 L 566.00 861.50 L 561.00 869.00 L 561.00 870.00 L 559.00 872.00 L 559.00 873.00 L 556.00 877.00 L 554.50 880.50 L 552.00 883.50 L 551.50 885.50 L 550.00 886.50 L 548.50 890.50 L 547.00 891.50 L 545.50 895.00 L 544.00 896.00 L 542.00 900.50 L 593.50 901.00 L 614.50 886.00 L 630.00 855.00 L 631.00 849.50 L 631.00 842.00 L 632.00 841.50 L 632.00 834.50 L 632.50 834.00 L 632.00 828.00 L 630.50 826.00 L 629.00 820.00 L 628.00 819.50 L 628.00 818.00 L 627.00 816.50 L 626.00 811.50 L 624.50 810.00 L 624.00 806.50 L 622.00 803.00 L 620.50 797.00 L 619.00 795.50 Z"/><path fill="#ffffff" fill-rule="evenodd" d="M 425.50 793.00 L 425.00 795.50 L 423.50 797.00 L 422.00 803.00 L 420.00 806.50 L 419.50 810.00 L 418.00 811.50 L 417.00 816.50 L 416.00 818.00 L 416.00 819.50 L 415.00 820.00 L 413.50 826.00 L 412.00 828.00 L 411.50 834.00 L 412.00 834.50 L 412.00 841.50 L 413.00 842.00 L 413.00 849.50 L 414.00 855.00 L 429.50 886.00 L 450.50 901.00 L 502.00 900.50 L 500.00 896.00 L 498.50 895.00 L 498.00 893.00 L 495.50 890.50 L 494.00 886.50 L 492.50 885.50 L 492.00 883.50 L 489.50 880.50 L 488.00 877.00 L 485.00 873.00 L 485.00 872.00 L 483.00 870.00 L 483.00 869.00 L 478.00 861.50 L 479.00 860.00 L 485.00 858.00 L 485.50 857.00 L 489.50 855.50 L 489.50 854.50 L 491.00 853.00 L 493.00 845.50 L 494.50 843.50 L 495.50 839.00 L 497.00 837.00 L 499.00 830.00 L 458.50 828.00 L 458.00 827.00 L 453.50 827.00 L 449.50 822.50 L 449.00 821.00 L 446.50 819.00 L 446.50 818.00 L 444.00 816.00 L 444.00 815.00 L 438.50 809.50 L 438.00 808.00 L 432.50 802.00 L 431.50 800.00 L 429.50 798.50 L 429.00 797.00 L 426.50 795.00 Z"/><path fill="#ffffff" fill-rule="evenodd" d="M 205.00 134.50 L 212.50 467.00 L 313.00 633.50 L 445.00 778.00 L 599.00 778.00 L 731.00 633.50 L 831.50 467.00 L 839.00 134.50 L 571.00 420.50 L 525.00 553.00 L 522.50 546.50 L 518.50 552.50 L 473.00 420.50 Z M 751.50 356.50 L 757.00 369.50 L 647.50 626.50 L 634.00 624.00 L 602.00 566.50 L 594.50 565.50 L 593.00 660.50 L 611.50 739.00 L 600.00 749.50 L 586.50 706.50 L 586.00 658.00 L 579.50 647.50 L 567.50 531.50 L 636.50 453.00 L 730.50 368.00 Z M 292.50 356.50 L 313.50 368.00 L 407.50 453.00 L 476.50 531.50 L 464.50 647.50 L 458.00 658.00 L 457.50 706.50 L 444.00 749.50 L 432.50 739.00 L 451.00 660.50 L 449.50 565.50 L 442.00 566.50 L 410.00 624.00 L 396.50 626.50 L 287.00 369.50 Z"/><path fill="#cc5f02" fill-rule="evenodd" d="M 697.00 435.50 L 694.00 435.00 L 692.50 434.00 L 691.00 436.00 L 690.00 436.00 L 688.00 438.50 L 686.00 439.50 L 685.00 441.00 L 682.50 442.50 L 679.00 446.00 L 678.00 446.00 L 671.00 453.00 L 669.50 453.50 L 667.00 456.50 L 666.00 456.50 L 664.00 459.00 L 662.00 460.00 L 659.00 463.00 L 657.50 463.50 L 655.00 466.50 L 654.00 466.50 L 652.00 469.00 L 646.50 473.00 L 643.00 477.00 L 642.00 477.00 L 638.50 480.50 L 636.50 481.50 L 635.00 483.50 L 633.50 484.00 L 631.00 487.00 L 630.00 487.00 L 628.00 489.50 L 626.00 490.50 L 625.00 492.00 L 622.50 493.50 L 619.00 497.00 L 618.00 497.00 L 614.50 501.00 L 612.50 502.00 L 611.00 504.00 L 609.50 504.50 L 607.00 507.50 L 606.00 507.50 L 604.00 510.00 L 602.00 511.00 L 599.00 514.00 L 597.50 514.50 L 592.50 519.50 L 596.50 519.00 L 597.50 518.00 L 599.50 518.00 L 602.50 517.00 L 611.00 516.00 L 612.00 515.00 L 614.00 515.00 L 614.50 514.50 L 625.50 513.00 L 626.50 512.00 L 640.00 510.00 L 641.00 509.00 L 655.00 507.00 L 656.00 506.00 L 668.00 504.00 L 668.00 503.00 L 671.00 497.50 L 672.00 493.50 L 673.00 493.00 L 673.50 490.50 L 674.50 489.00 L 674.50 487.50 L 676.00 486.00 L 676.00 484.50 L 677.00 483.00 L 678.00 479.00 L 679.50 477.50 L 680.50 473.00 L 682.50 470.50 L 682.50 469.00 L 683.50 467.50 L 684.00 465.00 L 685.50 463.00 L 686.00 460.50 L 687.00 459.00 L 687.00 457.50 L 688.50 456.00 L 690.00 450.50 L 691.00 450.00 L 692.00 446.00 L 694.00 443.00 L 695.00 439.00 Z"/><path fill="#cc5f02" fill-rule="evenodd" d="M 347.00 435.50 L 348.00 436.50 L 350.00 443.00 L 352.00 446.00 L 353.00 450.00 L 354.00 450.50 L 355.50 456.00 L 357.00 457.50 L 357.00 459.00 L 358.00 460.50 L 358.50 463.00 L 360.00 465.00 L 360.50 467.50 L 361.50 469.00 L 361.50 470.50 L 363.50 473.00 L 364.50 477.50 L 366.00 479.00 L 367.00 483.00 L 368.00 484.50 L 368.00 486.00 L 369.50 487.50 L 369.50 489.00 L 370.50 490.50 L 371.00 493.00 L 372.00 493.50 L 373.00 497.50 L 376.00 503.00 L 376.00 504.00 L 388.00 506.00 L 389.00 507.00 L 403.00 509.00 L 404.00 510.00 L 415.00 511.50 L 415.50 512.00 L 417.50 512.00 L 418.50 513.00 L 429.50 514.50 L 430.00 515.00 L 432.00 515.00 L 433.00 516.00 L 441.50 517.00 L 442.00 517.50 L 446.50 518.00 L 447.50 519.00 L 451.50 519.50 L 446.50 514.50 L 445.00 514.00 L 442.00 511.00 L 440.00 510.00 L 438.00 507.50 L 437.00 507.50 L 434.50 504.50 L 433.00 504.00 L 431.50 502.00 L 429.50 501.00 L 426.00 497.00 L 425.00 497.00 L 421.50 493.50 L 419.00 492.00 L 418.00 490.50 L 416.00 489.50 L 414.00 487.00 L 413.00 487.00 L 410.50 484.00 L 409.00 483.50 L 407.50 481.50 L 405.50 480.50 L 402.00 477.00 L 401.00 477.00 L 397.50 473.00 L 392.00 469.00 L 390.00 466.50 L 389.00 466.50 L 386.50 463.50 L 385.00 463.00 L 382.00 460.00 L 380.00 459.00 L 378.00 456.50 L 377.00 456.50 L 374.50 453.50 L 373.00 453.00 L 366.00 446.00 L 365.00 446.00 L 361.50 442.50 L 359.00 441.00 L 358.00 439.50 L 356.00 438.50 L 354.00 436.00 L 353.00 436.00 L 351.50 434.00 L 350.00 435.00 Z"/></svg>'
+    +'<svg class="logo-mark logo-light" width="'+size+'" height="'+size+'" viewBox="'+vb+'" aria-hidden="true"><path fill="#121013" fill-rule="evenodd" d="M 618.50 793.00 L 617.50 795.00 L 615.00 797.00 L 614.50 798.50 L 612.50 800.00 L 611.50 802.00 L 606.00 808.00 L 605.50 809.50 L 603.00 811.50 L 603.00 812.50 L 600.00 815.00 L 600.00 816.00 L 597.50 818.00 L 597.50 819.00 L 595.00 821.00 L 594.50 822.50 L 590.50 827.00 L 586.00 827.00 L 585.50 828.00 L 545.00 830.00 L 547.00 837.00 L 548.50 839.00 L 549.50 843.50 L 551.00 845.50 L 553.00 853.00 L 554.50 854.50 L 554.50 855.50 L 558.50 857.00 L 559.00 858.00 L 565.00 860.00 L 566.00 861.50 L 561.00 869.00 L 561.00 870.00 L 559.00 872.00 L 559.00 873.00 L 556.00 877.00 L 554.50 880.50 L 552.00 883.50 L 551.50 885.50 L 550.00 886.50 L 548.50 890.50 L 547.00 891.50 L 545.50 895.00 L 544.00 896.00 L 542.00 900.50 L 593.50 901.00 L 614.50 886.00 L 630.00 855.00 L 631.00 849.50 L 631.00 842.00 L 632.00 841.50 L 632.00 834.50 L 632.50 834.00 L 632.00 828.00 L 630.50 826.00 L 629.00 820.00 L 628.00 819.50 L 628.00 818.00 L 627.00 816.50 L 626.00 811.50 L 624.50 810.00 L 624.00 806.50 L 622.00 803.00 L 620.50 797.00 L 619.00 795.50 Z"/><path fill="#121013" fill-rule="evenodd" d="M 425.50 793.00 L 425.00 795.50 L 423.50 797.00 L 422.00 803.00 L 420.00 806.50 L 419.50 810.00 L 418.00 811.50 L 417.00 816.50 L 416.00 818.00 L 416.00 819.50 L 415.00 820.00 L 413.50 826.00 L 412.00 828.00 L 411.50 834.00 L 412.00 834.50 L 412.00 841.50 L 413.00 842.00 L 413.00 849.50 L 414.00 855.00 L 429.50 886.00 L 450.50 901.00 L 502.00 900.50 L 500.00 896.00 L 498.50 895.00 L 498.00 893.00 L 495.50 890.50 L 494.00 886.50 L 492.50 885.50 L 492.00 883.50 L 489.50 880.50 L 488.00 877.00 L 485.00 873.00 L 485.00 872.00 L 483.00 870.00 L 483.00 869.00 L 478.00 861.50 L 479.00 860.00 L 485.00 858.00 L 485.50 857.00 L 489.50 855.50 L 489.50 854.50 L 491.00 853.00 L 493.00 845.50 L 494.50 843.50 L 495.50 839.00 L 497.00 837.00 L 499.00 830.00 L 458.50 828.00 L 458.00 827.00 L 453.50 827.00 L 449.50 822.50 L 449.00 821.00 L 446.50 819.00 L 446.50 818.00 L 444.00 816.00 L 444.00 815.00 L 438.50 809.50 L 438.00 808.00 L 432.50 802.00 L 431.50 800.00 L 429.50 798.50 L 429.00 797.00 L 426.50 795.00 Z"/><path fill="#121013" fill-rule="evenodd" d="M 205.00 134.50 L 212.50 467.00 L 313.00 633.50 L 445.00 778.00 L 599.00 778.00 L 731.00 633.50 L 831.50 467.00 L 839.00 134.50 L 571.00 420.50 L 525.00 553.00 L 522.50 546.50 L 518.50 552.50 L 473.00 420.50 Z M 751.50 356.50 L 757.00 369.50 L 647.50 626.50 L 634.00 624.00 L 602.00 566.50 L 594.50 565.50 L 593.00 660.50 L 611.50 739.00 L 600.00 749.50 L 586.50 706.50 L 586.00 658.00 L 579.50 647.50 L 567.50 531.50 L 636.50 453.00 L 730.50 368.00 Z M 292.50 356.50 L 313.50 368.00 L 407.50 453.00 L 476.50 531.50 L 464.50 647.50 L 458.00 658.00 L 457.50 706.50 L 444.00 749.50 L 432.50 739.00 L 451.00 660.50 L 449.50 565.50 L 442.00 566.50 L 410.00 624.00 L 396.50 626.50 L 287.00 369.50 Z"/><path fill="#cc5f02" fill-rule="evenodd" d="M 706.00 426.00 L 700.50 424.00 L 698.50 426.50 L 696.50 427.00 L 696.00 428.50 L 692.50 430.50 L 691.50 432.50 L 688.50 434.00 L 685.00 438.00 L 683.00 438.50 L 679.00 443.00 L 678.00 443.00 L 677.00 444.50 L 675.50 445.00 L 674.50 447.00 L 672.50 447.50 L 670.00 451.00 L 668.50 451.00 L 666.00 454.00 L 664.00 455.00 L 660.00 459.00 L 658.50 459.50 L 655.50 463.00 L 654.00 463.00 L 652.00 466.00 L 649.50 467.00 L 649.00 468.50 L 647.50 469.00 L 646.00 471.00 L 645.00 471.00 L 641.00 475.50 L 639.50 475.50 L 635.50 480.00 L 633.00 481.00 L 631.50 483.50 L 629.50 484.00 L 628.00 486.50 L 625.50 487.50 L 623.00 490.50 L 620.50 492.00 L 619.50 493.50 L 618.50 493.50 L 617.00 495.50 L 615.50 496.00 L 613.00 499.00 L 611.00 499.50 L 611.00 500.50 L 608.00 502.50 L 607.00 504.50 L 604.50 505.50 L 602.50 508.00 L 600.50 508.50 L 598.00 512.00 L 596.50 512.00 L 589.00 519.50 L 586.50 520.50 L 583.50 524.00 L 582.00 524.00 L 580.50 526.50 L 585.00 526.00 L 586.50 525.00 L 589.00 525.00 L 590.00 524.00 L 602.50 522.50 L 604.00 521.00 L 620.00 519.00 L 621.00 517.50 L 634.50 516.00 L 638.50 514.00 L 655.50 511.50 L 656.50 510.50 L 661.50 510.00 L 662.50 509.00 L 671.00 508.00 L 672.00 504.50 L 673.50 503.50 L 675.00 497.00 L 677.00 495.00 L 678.00 490.50 L 679.00 490.00 L 679.00 488.00 L 680.50 486.50 L 681.00 483.50 L 682.00 483.00 L 683.00 478.00 L 685.00 476.00 L 686.50 469.50 L 688.00 469.00 L 690.00 461.00 L 692.00 459.00 L 693.00 454.50 L 694.00 454.00 L 694.00 452.00 L 695.50 450.50 L 696.00 447.50 L 697.00 447.00 L 697.50 444.00 L 700.00 440.00 L 702.00 433.50 L 703.50 432.00 L 704.50 427.00 Z"/><path fill="#cc5f02" fill-rule="evenodd" d="M 338.00 426.00 L 339.50 427.00 L 340.50 432.00 L 342.00 433.50 L 344.00 440.00 L 346.50 444.00 L 347.00 447.00 L 348.00 447.50 L 348.50 450.50 L 350.00 452.00 L 350.00 454.00 L 351.00 454.50 L 352.00 459.00 L 354.00 461.00 L 356.00 469.00 L 357.50 469.50 L 359.00 476.00 L 361.00 478.00 L 362.00 483.00 L 363.50 484.50 L 363.50 486.50 L 365.00 488.00 L 365.00 490.00 L 366.00 490.50 L 367.00 495.00 L 369.00 497.00 L 370.50 503.50 L 372.00 504.50 L 373.00 508.00 L 381.50 509.00 L 382.50 510.00 L 387.50 510.50 L 388.50 511.50 L 405.50 514.00 L 409.50 516.00 L 423.00 517.50 L 424.00 519.00 L 440.00 521.00 L 441.50 522.50 L 454.00 524.00 L 455.00 525.00 L 463.50 526.50 L 462.00 524.00 L 460.50 524.00 L 457.50 520.50 L 455.00 519.50 L 447.50 512.00 L 446.00 512.00 L 443.50 508.50 L 441.50 508.00 L 439.50 505.50 L 437.00 504.50 L 436.50 503.00 L 433.00 500.50 L 433.00 499.50 L 431.00 499.00 L 428.50 496.00 L 427.00 495.50 L 425.50 493.50 L 424.50 493.50 L 418.50 487.50 L 416.00 486.50 L 414.50 484.00 L 412.50 483.50 L 411.00 481.00 L 408.50 480.00 L 404.50 475.50 L 403.00 475.50 L 399.00 471.00 L 398.00 471.00 L 396.50 469.00 L 395.00 468.50 L 394.50 467.00 L 392.00 466.00 L 390.00 463.00 L 388.50 463.00 L 385.50 459.50 L 384.00 459.00 L 380.00 455.00 L 378.00 454.00 L 375.50 451.00 L 374.00 451.00 L 371.50 447.50 L 369.50 447.00 L 369.00 445.50 L 367.00 444.50 L 366.00 443.00 L 365.00 443.00 L 361.00 438.50 L 359.00 438.00 L 355.50 434.00 L 352.50 432.50 L 352.00 431.00 L 349.00 429.50 L 347.50 427.00 L 345.50 426.50 L 343.50 424.00 Z"/></svg>'
+    +'</span>';
+}
+
+/* ---------- state ---------- */
+function emptyState(){
+  return {
+    version: 1,
+    currency: '$',
+    income: [],
+    bills: [],
+    categories: [],
+    transactions: [],
+    debts: [],
+    payoff: {method:'snowball', extra:0},
+    goals: []
+  };
+}
+
+let state = emptyState();
+let view = 'overview';
+let planExpanded = false;
+let toastTimer = 0;
+
+function uid(){
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+}
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return emptyState();
+    const d = JSON.parse(raw);
+    return sanitizeState(d);
+  }catch(e){
+    return emptyState();
+  }
+}
+
+function sanitizeState(d){
+  const s = emptyState();
+  if(!d || typeof d !== 'object') return s;
+  const cur = String(d.currency == null ? '$' : d.currency).slice(0, 4);
+  s.currency = cur || '$';
+  s.income = Array.isArray(d.income) ? d.income.map(sanitizeIncome).filter(Boolean) : [];
+  s.bills = Array.isArray(d.bills) ? d.bills.map(sanitizeBill).filter(Boolean) : [];
+  s.categories = Array.isArray(d.categories) ? d.categories.map(sanitizeCat).filter(Boolean) : [];
+  s.transactions = Array.isArray(d.transactions) ? d.transactions.map(sanitizeTx).filter(Boolean) : [];
+  s.debts = Array.isArray(d.debts) ? d.debts.map(sanitizeDebt).filter(Boolean) : [];
+  s.goals = Array.isArray(d.goals) ? d.goals.map(sanitizeGoal).filter(Boolean) : [];
+  const method = d.payoff && d.payoff.method === 'avalanche' ? 'avalanche' : 'snowball';
+  const extra = d.payoff ? toMoney(d.payoff.extra) : 0;
+  s.payoff = {method, extra: extra >= 0 ? extra : 0};
+  return s;
+}
+
+function sanitizeIncome(x){
+  if(!x || typeof x !== 'object') return null;
+  const name = String(x.name||'').trim().slice(0, 80);
+  if(!name) return null;
+  const freq = INCOME_FREQ[x.frequency] ? x.frequency : 'monthly';
+  return {id: String(x.id||uid()), name, amount: Math.max(0, toMoney(x.amount)), frequency: freq};
+}
+function sanitizeBill(x){
+  if(!x || typeof x !== 'object') return null;
+  const name = String(x.name||'').trim().slice(0, 80);
+  if(!name) return null;
+  const freq = BILL_FREQ[x.frequency] ? x.frequency : 'monthly';
+  let dueDay = parseInt(x.dueDay, 10);
+  if(!Number.isFinite(dueDay) || dueDay < 1 || dueDay > 31) dueDay = 1;
+  const paid = Array.isArray(x.paid) ? x.paid.filter(p => /^\d{4}-\d{2}$/.test(p)).slice(-36) : [];
+  return {
+    id: String(x.id||uid()),
+    name,
+    amount: Math.max(0, toMoney(x.amount)),
+    frequency: freq,
+    dueDay,
+    anchor: /^\d{4}-\d{2}-\d{2}$/.test(x.anchor||'') ? x.anchor : '',
+    autopay: !!x.autopay,
+    category: String(x.category||'Other').trim().slice(0, 40) || 'Other',
+    paid
+  };
+}
+function sanitizeCat(x){
+  if(!x || typeof x !== 'object') return null;
+  const name = String(x.name||'').trim().slice(0, 80);
+  if(!name) return null;
+  return {id: String(x.id||uid()), name, limit: Math.max(0, toMoney(x.limit))};
+}
+function sanitizeTx(x){
+  if(!x || typeof x !== 'object') return null;
+  const amount = toMoney(x.amount);
+  if(!(amount > 0)) return null;
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(x.date||'') ? x.date : isoDate(new Date());
+  return {id: String(x.id||uid()), date, amount, categoryId: String(x.categoryId||''), note: String(x.note||'').trim().slice(0, 160)};
+}
+function sanitizeDebt(x){
+  if(!x || typeof x !== 'object') return null;
+  const name = String(x.name||'').trim().slice(0, 80);
+  if(!name) return null;
+  const apr = Number(x.apr);
+  return {
+    id: String(x.id||uid()),
+    name,
+    balance: Math.max(0, toMoney(x.balance)),
+    apr: Number.isFinite(apr) ? Math.min(100, Math.max(0, Math.round(apr*1000)/1000)) : 0,
+    minimum: Math.max(0, toMoney(x.minimum))
+  };
+}
+function sanitizeGoal(x){
+  if(!x || typeof x !== 'object') return null;
+  const name = String(x.name||'').trim().slice(0, 80);
+  if(!name) return null;
+  return {
+    id: String(x.id||uid()),
+    name,
+    target: Math.max(0, toMoney(x.target)),
+    saved: Math.max(0, toMoney(x.saved)),
+    monthly: Math.max(0, toMoney(x.monthly)),
+    emergency: !!x.emergency
+  };
+}
+
+function saveState(){
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+  }catch(e){
+    toast('Could not save — this device may be out of storage');
+  }
+}
+
+/* ---------- money & dates ---------- */
+function round2(n){
+  const x = Number(n);
+  if(!Number.isFinite(x)) return 0;
+  return Math.round(x * 100) / 100;
+}
+function toMoney(v){
+  if(typeof v === 'number') return Number.isFinite(v) ? round2(v) : 0;
+  const t = String(v==null?'':v).trim().replace(/[^0-9.+-]/g,'');
+  if(t==='' || t==='.' || t==='-' || t==='+' || t==='+.') return 0;
+  const n = Number(t);
+  return Number.isFinite(n) ? round2(n) : 0;
+}
+function parseMoneyInput(v){
+  const t = String(v==null?'':v).trim();
+  if(t==='') return {ok:false, empty:true, value:NaN};
+  const cleaned = t.replace(/[^0-9.+-]/g,'');
+  const n = Number(cleaned);
+  if(!Number.isFinite(n)) return {ok:false, empty:false, value:NaN};
+  if(n < 0) return {ok:false, empty:false, value:n, err:'Enter a number that’s zero or more'};
+  if(n > 999999999) return {ok:false, empty:false, value:n, err:'That amount is too large'};
+  return {ok:true, empty:false, value:round2(n)};
+}
+function parseApr(v){
+  const t = String(v==null?'':v).trim();
+  if(t==='') return {ok:false, empty:true, value:NaN};
+  const n = Number(t.replace(/[^0-9.+-]/g,''));
+  if(!Number.isFinite(n)) return {ok:false, empty:false, value:NaN};
+  if(n < 0 || n > 100) return {ok:false, empty:false, value:n, err:'APR should be between 0 and 100'};
+  return {ok:true, empty:false, value: Math.round(n*1000)/1000};
+}
+
+function currency(){ return state.currency || '$'; }
+function fmt(n, opts){
+  const x = round2(n);
+  const neg = x < 0;
+  const abs = Math.abs(x);
+  const digits = (opts && opts.plain) ? String(abs) : abs.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const s = currency() + digits;
+  return neg ? '−' + s : s;
+}
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+function today(){ return startOfDay(new Date()); }
+function startOfDay(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+function isoDate(d){
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function parseISO(s){
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
+  if(!m) return null;
+  const d = new Date(+m[1], +m[2]-1, +m[3]);
+  if(d.getFullYear()!=+m[1] || d.getMonth()!=+m[2]-1 || d.getDate()!=+m[3]) return null;
+  return d;
+}
+function daysInMonth(y,m){ return new Date(y, m+1, 0).getDate(); }
+function dateClamped(y,m,day){ return new Date(y, m, Math.min(Math.max(1,day), daysInMonth(y,m))); }
+function monthKey(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+function thisMonthKey(){ return monthKey(today()); }
+function fmtDate(d){
+  if(!d) return '';
+  return MONTHS_SHORT[d.getMonth()]+' '+d.getDate();
+}
+function fmtDateLong(d){
+  if(!d) return '';
+  return MONTHS[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+}
+function fmtMonthYear(y, mi){ return MONTHS[mi]+' '+y; }
+function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return startOfDay(x); }
+
+/* ---------- math ---------- */
+function monthlyEquivalent(amount, freq){
+  const a = Number(amount)||0;
+  switch(freq){
+    case 'weekly': return a * 52 / 12;
+    case 'biweekly': return a * 26 / 12;
+    case 'semimonthly': return a * 2;
+    case 'monthly': return a;
+    case 'irregular': return a;
+    case 'quarterly': return a * 4 / 12;
+    case 'yearly': return a / 12;
+    case 'once': return 0;
+    default: return a;
+  }
+}
+
+function monthlyIncome(){
+  return round2(state.income.reduce(function(s,i){ return s + monthlyEquivalent(i.amount, i.frequency); }, 0));
+}
+
+function billMonthly(b){
+  if(b.frequency === 'once'){
+    const due = nextDue(b);
+    if(due && monthKey(due) === thisMonthKey()) return round2(b.amount);
+    return 0;
+  }
+  return round2(monthlyEquivalent(b.amount, b.frequency));
+}
+
+function billsMonthly(){
+  return round2(state.bills.reduce(function(s,b){ return s + billMonthly(b); }, 0));
+}
+function categoriesMonthly(){
+  return round2(state.categories.reduce(function(s,c){ return s + (Number(c.limit)||0); }, 0));
+}
+function debtsMinMonthly(){
+  return round2(state.debts.reduce(function(s,d){ return s + (Number(d.minimum)||0); }, 0));
+}
+function goalsMonthly(){
+  return round2(state.goals.reduce(function(s,g){ return s + (Number(g.monthly)||0); }, 0));
+}
+function plannedSpending(){
+  return round2(billsMonthly() + categoriesMonthly() + debtsMinMonthly() + goalsMonthly());
+}
+function leftToAssign(){
+  return round2(monthlyIncome() - plannedSpending());
+}
+
+function nextDue(bill, from){
+  const t = startOfDay(from || today());
+  const y = t.getFullYear(), m = t.getMonth();
+  const paidKey = monthKey(t);
+  const paid = (bill.paid||[]).indexOf(paidKey) !== -1;
+  const freq = bill.frequency || 'monthly';
+
+  if(freq === 'once'){
+    return bill.anchor ? (parseISO(bill.anchor) || t) : t;
+  }
+
+  if(freq === 'weekly' || freq === 'biweekly'){
+    const step = freq === 'weekly' ? 7 : 14;
+    let due = bill.anchor && parseISO(bill.anchor) ? parseISO(bill.anchor) : t;
+    let guard = 0;
+    if(due < t){
+      const days = Math.round((t - due)/86400000);
+      const k = Math.floor(days/step);
+      due = addDays(due, k*step);
+      if(due < t){
+        if(!paid) return due;
+        due = addDays(due, step);
+      }
+    }
+    if(paid){
+      while(due.getFullYear()===y && due.getMonth()===m && guard++ < 12){
+        due = addDays(due, step);
+      }
+    }
+    return due;
+  }
+
+  if(freq === 'quarterly' || freq === 'yearly'){
+    const stepM = freq === 'quarterly' ? 3 : 12;
+    const anchor = bill.anchor && parseISO(bill.anchor) ? parseISO(bill.anchor) : dateClamped(y, m, Number(bill.dueDay)||1);
+    const ad = anchor.getDate();
+    // Latest occurrence on or before this month's end, for overdue detection
+    let due = dateClamped(anchor.getFullYear(), anchor.getMonth(), ad);
+    let guard = 0;
+    while(due < t && guard++ < 240){
+      const next = dateClamped(due.getFullYear(), due.getMonth()+stepM, ad);
+      if(next >= t){
+        if(!paid && due < t && (due.getFullYear() < y || (due.getFullYear()===y && due.getMonth()===m))){
+          // due already passed this period — if it's in a past period that's unpaid,
+          // show that past due only if it's the current cycle (same month for yearly is rare).
+          // For quarterly/yearly, a past occurrence that's unpaid is overdue until paid this month.
+          // If the last occurrence is before this month, it's overdue.
+          return due;
+        }
+        due = next;
+        break;
+      }
+      due = next;
+    }
+    if(paid && due.getFullYear()===y && due.getMonth()===m){
+      due = dateClamped(due.getFullYear(), due.getMonth()+stepM, ad);
+    }
+    return due;
+  }
+
+  // monthly
+  const day = Math.min(31, Math.max(1, Number(bill.dueDay)||1));
+  const thisDue = dateClamped(y, m, day);
+  if(!paid && thisDue < t) return thisDue;
+  if(!paid) return thisDue;
+  return dateClamped(y, m+1, day);
+}
+
+function isOverdue(bill){
+  if((bill.paid||[]).indexOf(thisMonthKey()) !== -1) return false;
+  const due = nextDue(bill);
+  return due && due < today();
+}
+
+function spentInMonth(categoryId, mk){
+  mk = mk || thisMonthKey();
+  return round2(state.transactions.reduce(function(s,t){
+    if(t.categoryId !== categoryId) return s;
+    if(!t.date || t.date.slice(0,7) !== mk) return s;
+    return s + (Number(t.amount)||0);
+  }, 0));
+}
+
+function goalProjection(goal){
+  const remaining = round2((Number(goal.target)||0) - (Number(goal.saved)||0));
+  if(remaining <= 0) return {done:true, months:0, year:null, monthIdx:null};
+  const c = Number(goal.monthly)||0;
+  if(c <= 0) return {done:false, months:null, year:null, monthIdx:null};
+  const months = Math.ceil(remaining / c);
+  const d = today();
+  const end = new Date(d.getFullYear(), d.getMonth() + months - 1, 1);
+  return {done:false, months:months, year:end.getFullYear(), monthIdx:end.getMonth()};
+}
+
+/* Amortization payoff plan.
+   Total monthly payment is held constant: sum of original minimums + extra.
+   Each month: interest accrues, minimums are paid, leftover goes to the target
+   (snowball = smallest balance first, avalanche = highest APR first).
+   When a debt is paid off, its minimum rolls into the leftover automatically
+   because the monthly budget does not shrink. */
+function payoffPlan(debts, method, extra){
+  const items = (debts||[])
+    .filter(function(d){ return Number(d.balance) > 0; })
+    .map(function(d){
+      return {
+        id: d.id,
+        name: d.name,
+        balance: round2(d.balance),
+        apr: Number(d.apr)||0,
+        min: Math.max(0, round2(d.minimum))
+      };
+    });
+  if(!items.length){
+    return {months:[], monthsCount:0, totalInterest:0, debtFree:null, order:[], stuck:false, monthlyBudget:0};
+  }
+  const monthlyBudget = round2(items.reduce(function(s,d){ return s+d.min; }, 0) + Math.max(0, Number(extra)||0));
+  const order = [];
+  const months = [];
+  let totalInterest = 0;
+  const MAX = 600;
+  const now = today();
+  const startY = now.getFullYear();
+  const startMo = now.getMonth();
+
+  function sortActive(){
+    return items.filter(function(d){ return d.balance > 0.005; }).sort(function(a,b){
+      if(method === 'avalanche'){
+        if(b.apr !== a.apr) return b.apr - a.apr;
+        if(a.balance !== b.balance) return a.balance - b.balance;
+      }else{
+        if(a.balance !== b.balance) return a.balance - b.balance;
+        if(b.apr !== a.apr) return b.apr - a.apr;
+      }
+      return String(a.name).localeCompare(String(b.name));
+    });
+  }
+
+  for(let m=0; m<MAX; m++){
+    const active = sortActive();
+    if(!active.length) break;
+    const year = startY + Math.floor((startMo + m)/12);
+    const monthIdx = (startMo + m) % 12;
+
+    for(let i=0;i<active.length;i++){
+      const d = active[i];
+      const interest = round2(d.balance * (d.apr/100) / 12);
+      d.balance = round2(d.balance + interest);
+      d._int = interest;
+      d._paid = 0;
+      totalInterest = round2(totalInterest + interest);
+    }
+
+    let cash = monthlyBudget;
+    for(let i=0;i<items.length;i++){
+      const d = items[i];
+      if(d.balance <= 0.005 || cash <= 0.005) continue;
+      const pay = Math.min(d.min, d.balance, cash);
+      d.balance = round2(d.balance - pay);
+      d._paid = round2((d._paid||0) + pay);
+      cash = round2(cash - pay);
+      if(d.balance <= 0.005) d.balance = 0;
+    }
+    for(let i=0;i<active.length;i++){
+      const d = active[i];
+      if(d.balance <= 0.005 || cash <= 0.005) continue;
+      const pay = Math.min(cash, d.balance);
+      d.balance = round2(d.balance - pay);
+      d._paid = round2((d._paid||0) + pay);
+      cash = round2(cash - pay);
+      if(d.balance <= 0.005) d.balance = 0;
+    }
+
+    const payments = active.map(function(d){
+      return {
+        id:d.id, name:d.name,
+        payment:d._paid||0,
+        interest:d._int||0,
+        principal: round2((d._paid||0) - (d._int||0)),
+        balance:d.balance,
+        paidOff: d.balance <= 0.005
+      };
+    });
+    for(let i=0;i<payments.length;i++){
+      const p = payments[i];
+      if(p.paidOff && !order.some(function(o){ return o.id===p.id; })){
+        order.push({id:p.id, name:p.name, month:m+1, year:year, monthIdx:monthIdx});
+      }
+    }
+    months.push({
+      n:m+1, year:year, monthIdx:monthIdx, payments:payments,
+      totalPaid: round2(payments.reduce(function(s,p){ return s+p.payment; },0)),
+      interest: round2(payments.reduce(function(s,p){ return s+p.interest; },0))
+    });
+  }
+
+  const stuck = items.some(function(d){ return d.balance > 0.005; });
+  const last = months[months.length-1];
+  return {
+    months: months,
+    monthsCount: months.length,
+    totalInterest: totalInterest,
+    debtFree: (stuck || !last) ? null : {year:last.year, monthIdx:last.monthIdx},
+    order: order,
+    stuck: stuck,
+    monthlyBudget: monthlyBudget
+  };
+}
+
+function exampleData(){
+  const mk = thisMonthKey();
+  const t = today();
+  const d1 = isoDate(addDays(t, -5));
+  const d2 = isoDate(addDays(t, -3));
+  const d3 = isoDate(addDays(t, -1));
+  const cats = [
+    {id:'ex-groceries', name:'Example groceries', limit:500},
+    {id:'ex-gas', name:'Example gas', limit:160},
+    {id:'ex-dining', name:'Example dining', limit:100}
+  ];
+  return {
+    version: 1,
+    currency: state.currency || '$',
+    income: [
+      {id:'ex-pay', name:'Example paycheck', amount:2000, frequency:'biweekly'}
+    ],
+    bills: [
+      {id:'ex-rent', name:'Example rent', amount:1200, frequency:'monthly', dueDay:1, anchor:'', autopay:true, category:'Housing', paid:[]},
+      {id:'ex-phone', name:'Example phone', amount:85, frequency:'monthly', dueDay:15, anchor:'', autopay:true, category:'Utilities', paid:[]},
+      {id:'ex-electric', name:'Example electric', amount:120, frequency:'monthly', dueDay:22, anchor:'', autopay:false, category:'Utilities', paid:[]}
+    ],
+    categories: cats,
+    transactions: [
+      {id:'ex-t1', date:d1, amount:54.20, categoryId:'ex-groceries', note:'Example market run'},
+      {id:'ex-t2', date:d2, amount:38.00, categoryId:'ex-gas', note:'Example fill-up'},
+      {id:'ex-t3', date:d3, amount:22.50, categoryId:'ex-dining', note:'Example lunch'}
+    ],
+    debts: [
+      {id:'ex-card', name:'Example card', balance:2400, apr:19.99, minimum:75},
+      {id:'ex-loan', name:'Example student loan', balance:6200, apr:5.5, minimum:110}
+    ],
+    payoff: {method:'snowball', extra:150},
+    goals: [
+      {id:'ex-ef', name:'Emergency fund', target:6000, saved:1500, monthly:250, emergency:true},
+      {id:'ex-vac', name:'Example vacation', target:2000, saved:350, monthly:150, emergency:false}
+    ]
+  };
+}
+
+/* ---------- render ---------- */
+function render(){
+  try{
+    document.getElementById('brand').innerHTML = logoMark(44);
+    document.getElementById('gear').innerHTML = ico('gear', 20);
+    renderTabs();
+    const main = document.getElementById('main');
+    const pages = {
+      overview: renderOverview,
+      income: renderIncome,
+      bills: renderBills,
+      spend: renderSpend,
+      debts: renderDebts,
+      goals: renderGoals,
+      settings: renderSettings
+    };
+    main.innerHTML = (pages[view] || renderOverview)();
+    main.setAttribute('data-view', view);
+  }catch(err){
+    console.error(err);
+    document.getElementById('main').innerHTML = '<div class="card"><p class="down">Something went wrong drawing this page. Try reloading.</p></div>';
+  }
+}
+
+function renderTabs(){
+  const tabs = [
+    {id:'overview', label:'Overview', icon:'overview'},
+    {id:'bills', label:'Bills', icon:'receipt'},
+    {id:'spend', label:'Spend', icon:'card'},
+    {id:'debts', label:'Debts', icon:'scale'},
+    {id:'goals', label:'Goals', icon:'flag'}
+  ];
+  document.getElementById('tabs').innerHTML = tabs.map(function(t){
+    const on = view===t.id ? ' on' : '';
+    const cur = view===t.id ? ' aria-current="page"' : '';
+    return '<button type="button" class="'+on.trim()+'" data-act="view" data-view="'+t.id+'" aria-label="'+t.label+'"'+cur+'>'
+      +'<span class="pill">'+ico(t.icon, 22)+'</span>'+esc(t.label)+'</button>';
+  }).join('');
+}
+
+function pageTitle(title, backView, extra){
+  const back = backView
+    ? '<button type="button" class="iconbtn" data-act="view" data-view="'+esc(backView)+'" aria-label="Back">'+ico('back',18)+'</button>'
+    : '';
+  return '<div class="pagetitle">'+back+'<h2>'+esc(title)+'</h2><span class="sp"></span>'+(extra||'')+'</div>';
+}
+
+function footer(){
+  return '<p class="footer">Free tool by Ravenous Wolves. Your data stays on this device. Not financial advice.</p>';
+}
+
+function emptyBlock(icon, title, body, actions){
+  return '<div class="empty">'+ico(icon,36)+'<b>'+esc(title)+'</b>'+esc(body)+(actions||'')+'</div>';
+}
+
+function progressBar(pct){
+  const p = Math.max(0, Number(pct)||0);
+  const cls = p >= 100 ? ' over' : p >= 85 ? ' warn' : '';
+  const w = Math.min(100, p);
+  return '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(w)+'"><i class="'+cls.trim()+'" style="width:'+w+'%"></i></div>';
+}
+
+function renderOverview(){
+  const t = today();
+  const income = monthlyIncome();
+  const planned = plannedSpending();
+  const left = leftToAssign();
+  const hasAny = state.income.length + state.bills.length + state.categories.length + state.debts.length + state.goals.length;
+  if(!hasAny){
+    return '<div class="card hero-empty">'
+      +logoMark(88)
+      +'<h2>Pack Plan</h2>'
+      +'<p class="byline">by <span class="wm-r">RAVENOUS</span> <span class="wm-w">WOLVES</span></p>'
+      +'<p>A free, private budget tool. Add your income, bills, spending, debts, and goals — everything stays on this device.</p>'
+      +'<button type="button" class="btn" data-act="load-example" data-testid="load-example">Load example data</button>'
+      +'<div style="height:8px"></div>'
+      +'<button type="button" class="btn ghost" data-act="edit-income" data-testid="start-income">Add your income</button>'
+      +'<p class="small muted" style="margin-top:14px">Example numbers are clearly labeled and are not anyone’s real finances.</p>'
+      +'</div>'
+      +footer();
+  }
+
+  const over = left < 0;
+  const assignedPct = income > 0 ? Math.min(999, (planned/income)*100) : (planned>0?100:0);
+  const leftLabel = over ? 'Over-assigned' : 'Left to assign';
+  const leftCls = over ? 'down' : (left===0 ? 'up' : '');
+
+  const upcoming = upcomingBills(14);
+  const overdue = state.bills.filter(isOverdue).sort(byDue);
+  const ef = state.goals.find(function(g){ return g.emergency; });
+
+  let html = '<p class="month-label" data-testid="month-label">'+esc(MONTHS[t.getMonth()]+' '+t.getFullYear())+'</p>';
+  html += '<div class="card brief sum">';
+  html += '<h2>'+ico('coin',20)+' This month</h2>';
+  html += '<div class="big '+leftCls+'" data-testid="left-to-assign">'+esc(fmt(left))+'</div>';
+  html += '<div class="subbig">'+leftLabel+' · zero-based</div>';
+  html += progressBar(assignedPct);
+  html += '<div class="stats">';
+  html += '<div class="stat"><span>Income</span><b data-testid="monthly-income">'+esc(fmt(income))+'</b></div>';
+  html += '<div class="stat"><span>Planned spending</span><b data-testid="planned-spending">'+esc(fmt(planned))+'</b></div>';
+  html += '</div>';
+  html += '<div class="breakdown" data-testid="planned-breakdown">';
+  html += bk('Bills', billsMonthly());
+  html += bk('Spending limits', categoriesMonthly());
+  html += bk('Debt minimums', debtsMinMonthly());
+  html += bk('Goal contributions', goalsMonthly());
+  html += '</div></div>';
+
+  html += '<div class="card"><h2>'+ico('coin',20)+' Income <span class="r"><button type="button" class="btn sm ghost" data-act="view" data-view="income">Manage</button></span></h2>';
+  if(!state.income.length){
+    html += emptyBlock('coin','No income yet','Add a paycheck or other source.','<div style="margin-top:10px"><button type="button" class="btn sm" data-act="edit-income">Add income</button></div>');
+  }else{
+    state.income.forEach(function(i){
+      html += '<div class="row"><div class="av">'+ico('coin',18)+'</div><div class="mid"><b>'+esc(i.name)+'</b><span>'+esc(fmt(i.amount))+' · '+esc(INCOME_FREQ[i.frequency]||i.frequency)+'</span></div><div class="end"><b data-testid="inc-mo-'+esc(i.id)+'">'+esc(fmt(round2(monthlyEquivalent(i.amount,i.frequency))))+'</b><span>/mo</span></div></div>';
+    });
+  }
+  html += '</div>';
+
+  html += '<div class="card"><h2>'+ico('receipt',20)+' Bills <span class="r"><button type="button" class="btn sm ghost" data-act="view" data-view="bills">All bills</button></span></h2>';
+  if(overdue.length){
+    html += '<div class="soft warn">'+ico('warn',18)+'<div><b>'+overdue.length+' overdue</b> — mark paid or update the due date.</div></div>';
+    overdue.forEach(function(b){ html += billRow(b, true); });
+  }
+  if(upcoming.length){
+    if(overdue.length) html += '<p class="small muted" style="margin:10px 0 0">Due in the next 14 days</p>';
+    upcoming.forEach(function(b){ html += billRow(b, false); });
+  }else if(!overdue.length){
+    html += '<p class="muted small" style="margin:0">No bills due in the next 14 days.</p>';
+  }
+  html += '</div>';
+
+  html += '<div class="card"><h2>'+ico('shield',20)+' Emergency fund</h2>';
+  if(ef){
+    const pct = ef.target>0 ? (ef.saved/ef.target)*100 : 0;
+    const proj = goalProjection(ef);
+    html += '<div class="barhead"><b>'+esc(ef.name)+'</b><span>'+esc(fmt(ef.saved))+' of '+esc(fmt(ef.target))+'</span></div>';
+    html += progressBar(pct);
+    html += '<p class="small muted" style="margin:8px 0 0" data-testid="ef-projection">'+esc(goalProjText(proj, ef))+'</p>';
+  }else{
+    html += '<p class="muted small" style="margin:0">Mark a savings goal as your emergency fund to see progress here.</p>';
+    html += '<button type="button" class="btn sm ghost" style="margin-top:10px" data-act="view" data-view="goals">Add a goal</button>';
+  }
+  html += '</div>';
+
+  if(state.categories.length){
+    html += '<div class="card"><h2>'+ico('card',20)+' Spending <span class="r"><button type="button" class="btn sm ghost" data-act="view" data-view="spend">See all</button></span></h2>';
+    state.categories.slice(0,4).forEach(function(c){
+      const spent = spentInMonth(c.id);
+      const pct = c.limit>0 ? (spent/c.limit)*100 : (spent>0?100:0);
+      html += '<div style="margin:10px 0"><div class="barhead"><b>'+esc(c.name)+'</b><span>'+esc(fmt(spent))+' of '+esc(fmt(c.limit))+'</span></div>'+progressBar(pct)+'</div>';
+    });
+    html += '</div>';
+  }
+
+  html += footer();
+  return html;
+}
+function bk(label, amt){
+  return '<div class="bk"><span>'+esc(label)+'</span><b>'+esc(fmt(amt))+'</b></div>';
+}
+function goalProjText(proj, goal){
+  if(proj.done) return 'Reached — nice work.';
+  if(proj.months==null) return 'Add a monthly contribution to see a finish date.';
+  return 'On track for '+MONTHS[proj.monthIdx]+' '+proj.year+' · '+proj.months+' month'+(proj.months===1?'':'s');
+}
+
+function byDue(a,b){
+  const da = nextDue(a), db = nextDue(b);
+  return (da?da.getTime():0) - (db?db.getTime():0) || a.name.localeCompare(b.name);
+}
+function upcomingBills(days){
+  const t = today();
+  const end = addDays(t, days);
+  return state.bills.filter(function(b){
+    if(isOverdue(b)) return false;
+    const d = nextDue(b);
+    return d && d>=t && d<=end;
+  }).sort(byDue);
+}
+
+function billRow(b, compact){
+  const due = nextDue(b);
+  const overdue = isOverdue(b);
+  const paid = (b.paid||[]).indexOf(thisMonthKey())!==-1;
+  const cls = 'row'+(overdue?' overdue':'');
+  const dueText = paid ? 'Paid · next '+fmtDate(due) : (overdue?'Overdue · '+fmtDate(due):'Due '+fmtDate(due));
+  const tags = (b.autopay?' <span class="tag accent">Autopay</span>':'');
+  return '<div class="'+cls+'" data-testid="bill-'+esc(b.id)+'">'
+    +'<div class="av'+(overdue?' warn':'')+'">'+ico(overdue?'warn':'calendar',18)+'</div>'
+    +'<button type="button" class="mid" data-act="edit-bill" data-id="'+esc(b.id)+'" style="background:none;border:0;padding:0;text-align:left"><b>'+esc(b.name)+tags+'</b><span class="meta">'+esc(b.category||'')+' · '+esc(dueText)+'</span></button>'
+    +'<div class="end"><b>'+esc(fmt(b.amount))+'</b>'
+    +'<button type="button" class="paid-btn'+(paid?' on':'')+'" data-act="toggle-paid" data-id="'+esc(b.id)+'" aria-pressed="'+(paid?'true':'false')+'" aria-label="'+(paid?'Mark '+b.name+' unpaid':'Mark '+b.name+' paid')+'">'+(paid?'Paid':'Mark paid')+'</button>'
+    +'</div></div>';
+}
+
+function renderIncome(){
+  let html = pageTitle('Income','overview','<button type="button" class="btn sm" data-act="edit-income" data-testid="add-income">'+ico('plus',14)+' Add</button>');
+  html += '<p class="note">Amounts are converted to a monthly equivalent so you can plan a zero-based month. Biweekly is amount × 26 ÷ 12; weekly is amount × 52 ÷ 12; twice a month is amount × 2.</p>';
+  html += '<div class="card">';
+  html += '<h2>This month’s income <span class="r" data-testid="income-total">'+esc(fmt(monthlyIncome()))+'</span></h2>';
+  if(!state.income.length){
+    html += emptyBlock('coin','No income sources','Add a paycheck, side work, or other source.','<div style="margin-top:10px"><button type="button" class="btn sm" data-act="edit-income">Add income</button></div>');
+  }else{
+    state.income.forEach(function(i){
+      const mo = round2(monthlyEquivalent(i.amount, i.frequency));
+      html += '<div class="row">'
+        +'<div class="av">'+ico('coin',18)+'</div>'
+        +'<button type="button" class="mid" data-act="edit-income" data-id="'+esc(i.id)+'" style="background:none;border:0;padding:0;text-align:left"><b>'+esc(i.name)+'</b><span>'+esc(fmt(i.amount))+' · '+esc(INCOME_FREQ[i.frequency]||'')+'</span></button>'
+        +'<div class="end"><b>'+esc(fmt(mo))+'</b><span>/mo</span></div></div>';
+    });
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderBills(){
+  const sorted = state.bills.slice().sort(byDue);
+  const paidN = sorted.filter(function(b){ return (b.paid||[]).indexOf(thisMonthKey())!==-1; }).length;
+  let html = pageTitle('Bills',null,'<button type="button" class="btn sm" data-act="edit-bill" data-testid="add-bill">'+ico('plus',14)+' Add</button>');
+  html += '<div class="card">';
+  html += '<h2>This month <span class="r">'+paidN+' of '+sorted.length+' paid · '+esc(fmt(billsMonthly()))+'/mo</span></h2>';
+  if(!sorted.length){
+    html += emptyBlock('receipt','No bills yet','Add rent, utilities, and other recurring bills. They’re sorted by the next due date.','<div style="margin-top:10px"><button type="button" class="btn sm" data-act="edit-bill">Add a bill</button></div>');
+  }else{
+    sorted.forEach(function(b){ html += billRow(b); });
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderSpend(){
+  const mk = thisMonthKey();
+  let html = pageTitle('Spend',null,'<button type="button" class="btn sm" data-act="edit-tx" data-testid="add-tx">'+ico('plus',14)+' Log</button>');
+  html += '<div class="card">';
+  html += '<h2>Categories <span class="r"><button type="button" class="btn sm ghost" data-act="edit-cat" data-testid="add-cat">Add</button></span></h2>';
+  if(!state.categories.length){
+    html += emptyBlock('card','No spending categories','Set a monthly limit for groceries, gas, and the rest, then log what you spend.','<div style="margin-top:10px"><button type="button" class="btn sm" data-act="edit-cat">Add a category</button></div>');
+  }else{
+    state.categories.forEach(function(c){
+      const spent = spentInMonth(c.id, mk);
+      const rem = round2(c.limit - spent);
+      const pct = c.limit>0 ? (spent/c.limit)*100 : (spent>0?100:0);
+      const remCls = rem < 0 ? 'down' : '';
+      html += '<button type="button" class="row" data-act="edit-cat" data-id="'+esc(c.id)+'" data-testid="cat-'+esc(c.id)+'">'
+        +'<div class="mid" style="flex:1"><div class="barhead"><b>'+esc(c.name)+'</b><span class="'+remCls+'">'+(rem<0?'Over '+fmt(Math.abs(rem)):'Left '+fmt(rem))+'</span></div>'
+        +progressBar(pct)
+        +'<span class="small">'+esc(fmt(spent))+' of '+esc(fmt(c.limit))+'</span></div></button>';
+    });
+  }
+  html += '</div>';
+
+  const txs = state.transactions.filter(function(t){ return t.date && t.date.slice(0,7)===mk; })
+    .sort(function(a,b){ return b.date.localeCompare(a.date) || b.id.localeCompare(a.id); });
+  const total = round2(txs.reduce(function(s,t){ return s+(Number(t.amount)||0); },0));
+  html += '<div class="card"><h2>This month’s transactions <span class="r" data-testid="tx-total">'+esc(fmt(total))+'</span></h2>';
+  if(!txs.length){
+    html += '<p class="muted small" style="margin:0">No transactions logged this month.</p>';
+  }else{
+    txs.forEach(function(t){
+      const cat = state.categories.find(function(c){ return c.id===t.categoryId; });
+      const d = parseISO(t.date);
+      html += '<div class="row">'
+        +'<button type="button" class="mid" data-act="edit-tx" data-id="'+esc(t.id)+'" style="background:none;border:0;padding:0;text-align:left"><b>'+esc(cat?cat.name:'Uncategorized')+'</b><span>'+esc(d?fmtDateLong(d):t.date)+(t.note?' · '+esc(t.note):'')+'</span></button>'
+        +'<div class="end"><b>'+esc(fmt(t.amount))+'</b></div></div>';
+    });
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderDebts(){
+  let html = pageTitle('Debts',null,'<button type="button" class="btn sm" data-act="edit-debt" data-testid="add-debt">'+ico('plus',14)+' Add</button>');
+  html += '<div class="card">';
+  html += '<h2>Balances <span class="r" data-testid="debt-total">'+esc(fmt(state.debts.reduce(function(s,d){return s+(Number(d.balance)||0)},0)))+'</span></h2>';
+  if(!state.debts.length){
+    html += emptyBlock('scale','No debts tracked','Add a card or loan with its balance, APR, and minimum payment. The planner below will build a payoff path.','<div style="margin-top:10px"><button type="button" class="btn sm" data-act="edit-debt">Add a debt</button></div>');
+  }else{
+    state.debts.forEach(function(d){
+      html += '<div class="row">'
+        +'<div class="av">'+ico('card',18)+'</div>'
+        +'<button type="button" class="mid" data-act="edit-debt" data-id="'+esc(d.id)+'" style="background:none;border:0;padding:0;text-align:left"><b>'+esc(d.name)+'</b><span>'+esc(String(d.apr))+'% APR · min '+esc(fmt(d.minimum))+'</span></button>'
+        +'<div class="end"><b data-testid="debt-bal-'+esc(d.id)+'">'+esc(fmt(d.balance))+'</b></div></div>';
+    });
+  }
+  html += '</div>';
+
+  html += renderPayoffCard();
+  return html;
+}
+
+function renderPayoffCard(){
+  const method = (state.payoff&&state.payoff.method)==='avalanche'?'avalanche':'snowball';
+  const extra = state.payoff ? (Number(state.payoff.extra)||0) : 0;
+  let html = '<div class="card" data-testid="payoff-card">';
+  html += '<h2>'+ico('target',20)+' Payoff planner</h2>';
+  html += '<p class="small muted" style="margin:0 0 10px">Snowball: smallest balance first. Avalanche: highest APR first. Monthly payment stays at minimums plus extra, so paid-off debts roll into the next.</p>';
+  html += '<div class="seg" role="tablist" aria-label="Payoff method">';
+  html += '<button type="button" class="'+(method==='snowball'?'on':'')+'" data-act="payoff-method" data-method="snowball" data-testid="method-snowball">Snowball</button>';
+  html += '<button type="button" class="'+(method==='avalanche'?'on':'')+'" data-act="payoff-method" data-method="avalanche" data-testid="method-avalanche">Avalanche</button>';
+  html += '</div>';
+  html += '<label class="f" style="margin-top:12px">Extra monthly payment'
+    +'<input type="text" inputmode="decimal" id="extra-pay" data-testid="extra-pay" value="'+esc(extra?String(extra):'')+'" placeholder="0.00" aria-label="Extra monthly payment" autocomplete="off">'
+    +'</label>';
+
+  if(!state.debts.length){
+    html += '<p class="muted small">Add a debt to see a plan.</p></div>';
+    return html;
+  }
+  const plan = payoffPlan(state.debts, method, extra);
+  html += '<div class="stats" style="display:flex;gap:8px;margin:4px 0 12px">';
+  html += '<div class="stat" style="flex:1;background:var(--card2);border-radius:4px;padding:8px 10px"><span class="muted small">Debt-free</span><b data-testid="debt-free">'+(plan.debtFree?esc(fmtMonthYear(plan.debtFree.year, plan.debtFree.monthIdx)):(plan.stuck?'Not reached':'—'))+'</b></div>';
+  html += '<div class="stat" style="flex:1;background:var(--card2);border-radius:4px;padding:8px 10px"><span class="muted small">Total interest</span><b data-testid="total-interest">'+esc(fmt(plan.totalInterest))+'</b></div>';
+  html += '</div>';
+  html += '<p class="small muted" data-testid="plan-months">'+esc(plan.stuck
+    ? 'These payments may not cover the interest. Try a larger extra payment.'
+    : (plan.monthsCount+' month'+(plan.monthsCount===1?'':'s')+' · '+fmt(plan.monthlyBudget)+' each month'))+'</p>';
+
+  if(plan.order.length){
+    html += '<h2 style="margin-top:12px">Payoff order</h2><ol class="order-list" data-testid="payoff-order">';
+    plan.order.forEach(function(o,i){
+      html += '<li><span class="n">'+(i+1)+'</span><div class="mid"><b>'+esc(o.name)+'</b><span class="muted small">'+esc(fmtMonthYear(o.year,o.monthIdx))+' · month '+o.month+'</span></div></li>';
+    });
+    html += '</ol>';
+  }
+
+  if(plan.months.length){
+    const show = planExpanded ? plan.months : plan.months.slice(0, 6);
+    html += '<h2 style="margin-top:12px">Month by month</h2>';
+    html += '<div style="overflow-x:auto"><table class="plan-table" data-testid="plan-table"><thead><tr><th>Month</th><th>Debt</th><th class="num">Payment</th><th class="num">Interest</th><th class="num">Balance</th></tr></thead><tbody>';
+    show.forEach(function(mo){
+      mo.payments.forEach(function(p, i){
+        html += '<tr class="'+(p.paidOff?'done':'')+'">'
+          +(i===0?'<td class="plan-month" rowspan="'+mo.payments.length+'">'+esc(MONTHS_SHORT[mo.monthIdx]+' '+mo.year)+'</td>':'')
+          +'<td class="debt-name" title="'+esc(p.name)+'">'+esc(p.name)+(p.paidOff?' <span class="tag up">Paid off</span>':'')+'</td>'
+          +'<td class="num">'+esc(fmt(p.payment))+'</td>'
+          +'<td class="num">'+esc(fmt(p.interest))+'</td>'
+          +'<td class="num">'+esc(fmt(p.balance))+'</td></tr>';
+      });
+    });
+    html += '</tbody></table></div>';
+    if(plan.months.length > 6){
+      html += '<button type="button" class="btn sm ghost block" style="margin-top:10px" data-act="toggle-plan" data-testid="toggle-plan">'
+        +(planExpanded?'Show fewer months':'Show all '+plan.months.length+' months')+'</button>';
+    }
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderGoals(){
+  let html = pageTitle('Goals',null,'<button type="button" class="btn sm" data-act="edit-goal" data-testid="add-goal">'+ico('plus',14)+' Add</button>');
+  html += '<div class="card">';
+  if(!state.goals.length){
+    html += emptyBlock('flag','No savings goals','Set a target, what you’ve already saved, and a monthly contribution to see a projected finish date.','<div style="margin-top:10px"><button type="button" class="btn sm" data-act="edit-goal">Add a goal</button></div>');
+  }else{
+    state.goals.forEach(function(g){
+      const pct = g.target>0 ? (g.saved/g.target)*100 : (g.saved>0?100:0);
+      const proj = goalProjection(g);
+      html += '<button type="button" class="row" data-act="edit-goal" data-id="'+esc(g.id)+'" data-testid="goal-'+esc(g.id)+'" style="flex-wrap:wrap">'
+        +'<div class="av'+(g.emergency?' gold':'')+'">'+ico(g.emergency?'shield':'flag',18)+'</div>'
+        +'<div class="mid"><b>'+esc(g.name)+(g.emergency?' <span class="tag">Emergency</span>':'')+'</b>'
+        +'<span>'+esc(fmt(g.saved))+' of '+esc(fmt(g.target))+(g.monthly?' · '+fmt(g.monthly)+'/mo':'')+'</span>'
+        +progressBar(pct)
+        +'<span class="small">'+esc(goalProjText(proj,g))+'</span></div></button>';
+    });
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderSettings(){
+  const theme = (window.__theme && window.__theme.pref()) || 'dark';
+  const cur = currency();
+  const presets = ['$','€','£','¥','₹','C$','A$'];
+  let html = pageTitle('Settings');
+  html += '<div class="card"><h2>Appearance</h2>';
+  html += '<p class="small muted" style="margin:0 0 8px">Theme</p>';
+  html += '<div class="seg" role="tablist" aria-label="Theme">';
+  html += '<button type="button" class="'+(theme!=='light'?'on':'')+'" data-act="theme" data-theme="dark" data-testid="theme-dark">'+ico('moon',16)+' Dark</button>';
+  html += '<button type="button" class="'+(theme==='light'?'on':'')+'" data-act="theme" data-theme="light" data-testid="theme-light">'+ico('sun',16)+' Light</button>';
+  html += '</div></div>';
+
+  html += '<div class="card"><h2>Currency</h2>';
+  html += '<label class="f" for="currency-input">Symbol shown on amounts';
+  html += '<input type="text" id="currency-input" data-testid="currency-input" maxlength="4" value="'+esc(cur)+'" aria-label="Currency symbol" autocomplete="off">';
+  html += '</label>';
+  html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+  presets.forEach(function(p){
+    html += '<button type="button" class="btn sm ghost" data-act="currency" data-cur="'+esc(p)+'">'+esc(p)+'</button>';
+  });
+  html += '</div></div>';
+
+  html += '<div class="card"><h2>Backup</h2>';
+  html += '<p class="small muted">Export a JSON copy of everything on this device, or import one you saved earlier. Importing replaces what’s here.</p>';
+  html += '<div class="actions"><button type="button" class="btn ghost" data-act="export" data-testid="export-btn">'+ico('download',16)+' Export</button>';
+  html += '<button type="button" class="btn ghost" data-act="import" data-testid="import-btn">'+ico('upload',16)+' Import</button></div>';
+  html += '<input type="file" id="import-file" class="hidden-file" accept="application/json,.json" aria-label="Import JSON backup">';
+  html += '</div>';
+
+  html += '<div class="card"><h2>Sample &amp; reset</h2>';
+  html += '<p class="small muted">Load clearly labeled example numbers to try the app, or clear everything on this device.</p>';
+  html += '<div class="actions"><button type="button" class="btn ghost" data-act="load-example">Load example data</button>';
+  html += '<button type="button" class="btn danger" data-act="clear-all" data-testid="clear-all">Clear all</button></div>';
+  html += '</div>';
+  html += footer();
+  return html;
+}
+
+/* ---------- sheets & forms ---------- */
+function openSheet(html){
+  const body = document.getElementById('sheetBody');
+  body.innerHTML = html;
+  document.body.classList.add('sheet-open');
+  const first = body.querySelector('input, select, textarea, button.btn:not(.ghost):not(.danger)');
+  if(first) setTimeout(function(){ try{ first.focus(); }catch(e){} }, 50);
+}
+function closeSheet(){
+  document.body.classList.remove('sheet-open');
+  document.getElementById('sheetBody').innerHTML = '';
+}
+
+function field(label, inner, forId){
+  return '<label class="f"'+(forId?' for="'+forId+'"':'')+'>'+esc(label)+inner+'</label>';
+}
+function textInput(id, val, opts){
+  opts = opts || {};
+  return '<input type="'+(opts.type||'text')+'" id="'+id+'" name="'+id+'" value="'+esc(val==null?'':val)+'"'
+    +(opts.inputmode?' inputmode="'+opts.inputmode+'"':'')
+    +(opts.placeholder?' placeholder="'+esc(opts.placeholder)+'"':'')
+    +(opts.autocomplete!==undefined?' autocomplete="'+opts.autocomplete+'"':' autocomplete="off"')
+    +(opts.maxlength?' maxlength="'+opts.maxlength+'"':'')
+    +(opts.aria?' aria-label="'+esc(opts.aria)+'"':'')
+    +'>';
+}
+function selectInput(id, val, options){
+  let h = '<select id="'+id+'" name="'+id+'">';
+  options.forEach(function(o){
+    const v = typeof o === 'string' ? o : o.value;
+    const l = typeof o === 'string' ? o : o.label;
+    h += '<option value="'+esc(v)+'"'+(v===val?' selected':'')+'>'+esc(l)+'</option>';
+  });
+  return h+'</select>';
+}
+
+function formActions(hasDelete){
+  return '<p class="err" id="form-err" role="alert"></p>'
+    +'<div class="actions"><button type="button" class="btn ghost" data-act="close-sheet">Cancel</button>'
+    +'<button type="button" class="btn" data-act="save-form" data-testid="save-form">Save</button></div>'
+    +(hasDelete?'<button type="button" class="btn danger block" style="margin-top:10px" data-act="delete-form" data-testid="delete-form">'+ico('trash',16)+' Delete</button>':'');
+}
+
+function showErr(msg){
+  const el = document.getElementById('form-err');
+  if(el) el.textContent = msg || '';
+}
+
+let formKind = null;
+let formId = null;
+
+function sheetIncome(id){
+  const item = id && state.income.find(function(x){ return x.id===id; });
+  formKind = 'income'; formId = item ? item.id : null;
+  const freqOpts = Object.keys(INCOME_FREQ).map(function(k){ return {value:k, label:INCOME_FREQ[k]}; });
+  openSheet('<h3 id="sheetTitle">'+(item?'Edit income':'Add income')+'</h3>'
+    +field('Name', textInput('f-name', item?item.name:'', {placeholder:'e.g. Example paycheck', maxlength:80, aria:'Income name'}), 'f-name')
+    +'<div class="frow">'
+    +field('Amount', textInput('f-amount', item?item.amount:'', {inputmode:'decimal', placeholder:'0.00', aria:'Amount'}), 'f-amount')
+    +field('Frequency', selectInput('f-freq', item?item.frequency:'biweekly', freqOpts), 'f-freq')
+    +'</div>'
+    +'<p class="live" id="f-preview"></p>'
+    +formActions(!!item));
+  updateIncomePreview();
+}
+function updateIncomePreview(){
+  const el = document.getElementById('f-preview');
+  if(!el) return;
+  const a = parseMoneyInput(document.getElementById('f-amount').value);
+  const freq = document.getElementById('f-freq').value;
+  if(!a.ok){ el.textContent = ''; return; }
+  el.textContent = 'Monthly equivalent: '+fmt(round2(monthlyEquivalent(a.value, freq)));
+}
+
+function sheetBill(id){
+  const item = id && state.bills.find(function(x){ return x.id===id; });
+  formKind = 'bill'; formId = item ? item.id : null;
+  const freqOpts = Object.keys(BILL_FREQ).map(function(k){ return {value:k, label:BILL_FREQ[k]}; });
+  const catOpts = BILL_CATS.slice();
+  if(item && item.category && catOpts.indexOf(item.category)===-1) catOpts.push(item.category);
+  const freq = item ? item.frequency : 'monthly';
+  openSheet('<h3 id="sheetTitle">'+(item?'Edit bill':'Add a bill')+'</h3>'
+    +field('Name', textInput('f-name', item?item.name:'', {placeholder:'e.g. Example rent', maxlength:80, aria:'Bill name'}), 'f-name')
+    +'<div class="frow">'
+    +field('Amount', textInput('f-amount', item?item.amount:'', {inputmode:'decimal', placeholder:'0.00', aria:'Amount'}), 'f-amount')
+    +field('Frequency', selectInput('f-freq', freq, freqOpts), 'f-freq')
+    +'</div>'
+    +'<div id="f-due-wrap">'+dueFields(item, freq)+'</div>'
+    +field('Category', selectInput('f-cat', item?item.category:'Housing', catOpts), 'f-cat')
+    +'<div class="toggle"><div class="lbl">Autopay<span>A reminder only — this app does not pay bills.</span></div>'
+    +'<label class="switch"><input type="checkbox" id="f-autopay" '+(item&&item.autopay?'checked':'')+'><i></i></label></div>'
+    +formActions(!!item));
+}
+function dueFields(item, freq){
+  const needsDate = freq==='weekly'||freq==='biweekly'||freq==='quarterly'||freq==='yearly'||freq==='once';
+  if(needsDate){
+    const val = (item && item.anchor) || isoDate(today());
+    return field('Next due date', textInput('f-anchor', val, {type:'date', aria:'Due date'}), 'f-anchor');
+  }
+  return field('Due day of month', textInput('f-dueday', item?item.dueDay:1, {inputmode:'numeric', placeholder:'1–31', aria:'Due day of month'}), 'f-dueday')
+    +'<span class="hint">For months without that day, the last day is used (for example, the 31st becomes Feb 28).</span>';
+}
+
+function sheetCat(id){
+  const item = id && state.categories.find(function(x){ return x.id===id; });
+  formKind = 'cat'; formId = item ? item.id : null;
+  openSheet('<h3 id="sheetTitle">'+(item?'Edit category':'Add a category')+'</h3>'
+    +field('Name', textInput('f-name', item?item.name:'', {placeholder:'e.g. Example groceries', maxlength:80, aria:'Category name'}), 'f-name')
+    +field('Monthly limit', textInput('f-limit', item?item.limit:'', {inputmode:'decimal', placeholder:'0.00', aria:'Monthly limit'}), 'f-limit')
+    +formActions(!!item));
+}
+
+function sheetTx(id){
+  const item = id && state.transactions.find(function(x){ return x.id===id; });
+  formKind = 'tx'; formId = item ? item.id : null;
+  if(!state.categories.length){
+    openSheet('<h3 id="sheetTitle">Add a category first</h3><p class="muted">Log spending under a budget category. Add one, then come back to this.</p>'
+      +'<div class="actions"><button type="button" class="btn ghost" data-act="close-sheet">Cancel</button>'
+      +'<button type="button" class="btn" data-act="edit-cat">Add a category</button></div>');
+    return;
+  }
+  const opts = state.categories.map(function(c){ return {value:c.id, label:c.name}; });
+  openSheet('<h3 id="sheetTitle">'+(item?'Edit transaction':'Log a transaction')+'</h3>'
+    +field('Amount', textInput('f-amount', item?item.amount:'', {inputmode:'decimal', placeholder:'0.00', aria:'Amount'}), 'f-amount')
+    +field('Category', selectInput('f-cat', item?item.categoryId:state.categories[0].id, opts), 'f-cat')
+    +field('Date', textInput('f-date', item?item.date:isoDate(today()), {type:'date', aria:'Date'}), 'f-date')
+    +field('Note (optional)', textInput('f-note', item?item.note:'', {placeholder:'What was it?', maxlength:160, aria:'Note'}), 'f-note')
+    +formActions(!!item));
+}
+
+function sheetDebt(id){
+  const item = id && state.debts.find(function(x){ return x.id===id; });
+  formKind = 'debt'; formId = item ? item.id : null;
+  openSheet('<h3 id="sheetTitle">'+(item?'Edit debt':'Add a debt')+'</h3>'
+    +field('Name', textInput('f-name', item?item.name:'', {placeholder:'e.g. Example card', maxlength:80, aria:'Debt name'}), 'f-name')
+    +field('Balance', textInput('f-balance', item?item.balance:'', {inputmode:'decimal', placeholder:'0.00', aria:'Balance'}), 'f-balance')
+    +'<div class="frow">'
+    +field('APR %', textInput('f-apr', item?item.apr:'', {inputmode:'decimal', placeholder:'0.00', aria:'APR percent'}), 'f-apr')
+    +field('Minimum payment', textInput('f-min', item?item.minimum:'', {inputmode:'decimal', placeholder:'0.00', aria:'Minimum payment'}), 'f-min')
+    +'</div>'
+    +formActions(!!item));
+}
+
+function sheetGoal(id){
+  const item = id && state.goals.find(function(x){ return x.id===id; });
+  formKind = 'goal'; formId = item ? item.id : null;
+  openSheet('<h3 id="sheetTitle">'+(item?'Edit goal':'Add a goal')+'</h3>'
+    +field('Name', textInput('f-name', item?item.name:'', {placeholder:'e.g. Emergency fund', maxlength:80, aria:'Goal name'}), 'f-name')
+    +'<div class="frow">'
+    +field('Target', textInput('f-target', item?item.target:'', {inputmode:'decimal', placeholder:'0.00', aria:'Target amount'}), 'f-target')
+    +field('Already saved', textInput('f-saved', item?item.saved:'', {inputmode:'decimal', placeholder:'0.00', aria:'Already saved'}), 'f-saved')
+    +'</div>'
+    +field('Monthly contribution', textInput('f-monthly', item?item.monthly:'', {inputmode:'decimal', placeholder:'0.00', aria:'Monthly contribution'}), 'f-monthly')
+    +'<div class="toggle"><div class="lbl">Emergency fund<span>Shown on the Overview tab. Only one goal can be the emergency fund.</span></div>'
+    +'<label class="switch"><input type="checkbox" id="f-emergency" '+(item&&item.emergency?'checked':'')+'><i></i></label></div>'
+    +formActions(!!item));
+}
+
+function confirmSheet(title, body, confirmLabel, act, danger){
+  formKind = null; formId = null;
+  openSheet('<h3 id="sheetTitle">'+esc(title)+'</h3><p>'+body+'</p>'
+    +'<div class="actions"><button type="button" class="btn ghost" data-act="close-sheet">Cancel</button>'
+    +'<button type="button" class="btn'+(danger?' danger':'')+'" data-act="'+esc(act)+'" data-testid="confirm-ok">'+esc(confirmLabel)+'</button></div>');
+}
+
+function val(id){ const el=document.getElementById(id); return el?el.value:''; }
+function requireName(){
+  const name = String(val('f-name')||'').trim();
+  if(!name){ showErr('Please enter a name.'); const el=document.getElementById('f-name'); if(el)el.focus(); return null; }
+  return name.slice(0,80);
+}
+function requireMoney(id, label, allowZero){
+  const r = parseMoneyInput(val(id));
+  if(r.empty){ showErr('Please enter '+label+'.'); const el=document.getElementById(id); if(el)el.focus(); return null; }
+  if(!r.ok){ showErr(r.err||('Enter a valid '+label+'.')); const el=document.getElementById(id); if(el)el.focus(); return null; }
+  if(!allowZero && r.value===0){ showErr(label.charAt(0).toUpperCase()+label.slice(1)+' should be more than zero.'); const el=document.getElementById(id); if(el)el.focus(); return null; }
+  return r.value;
+}
+
+function saveForm(){
+  showErr('');
+  if(formKind==='income'){
+    const name = requireName(); if(!name) return;
+    const amount = requireMoney('f-amount','an amount', true); if(amount==null) return;
+    const frequency = INCOME_FREQ[val('f-freq')] ? val('f-freq') : 'monthly';
+    if(formId){
+      const it = state.income.find(function(x){ return x.id===formId; });
+      if(it){ it.name=name; it.amount=amount; it.frequency=frequency; }
+    }else{
+      state.income.push({id:uid(), name:name, amount:amount, frequency:frequency});
+    }
+  }else if(formKind==='bill'){
+    const name = requireName(); if(!name) return;
+    const amount = requireMoney('f-amount','an amount', true); if(amount==null) return;
+    const frequency = BILL_FREQ[val('f-freq')] ? val('f-freq') : 'monthly';
+    let dueDay = 1, anchor = '';
+    const needsDate = frequency==='weekly'||frequency==='biweekly'||frequency==='quarterly'||frequency==='yearly'||frequency==='once';
+    if(needsDate){
+      const d = parseISO(val('f-anchor'));
+      if(!d){ showErr('Please enter a valid due date.'); return; }
+      anchor = val('f-anchor');
+      dueDay = d.getDate();
+    }else{
+      const raw = parseInt(val('f-dueday'),10);
+      if(!Number.isFinite(raw) || raw<1 || raw>31){ showErr('Due day should be a number from 1 to 31.'); document.getElementById('f-dueday').focus(); return; }
+      dueDay = raw;
+    }
+    const category = String(val('f-cat')||'Other').slice(0,40);
+    const autopay = !!(document.getElementById('f-autopay')&&document.getElementById('f-autopay').checked);
+    if(formId){
+      const it = state.bills.find(function(x){ return x.id===formId; });
+      if(it){ it.name=name; it.amount=amount; it.frequency=frequency; it.dueDay=dueDay; it.anchor=anchor; it.category=category; it.autopay=autopay; }
+    }else{
+      state.bills.push({id:uid(), name:name, amount:amount, frequency:frequency, dueDay:dueDay, anchor:anchor, category:category, autopay:autopay, paid:[]});
+    }
+  }else if(formKind==='cat'){
+    const name = requireName(); if(!name) return;
+    const limit = requireMoney('f-limit','a monthly limit', true); if(limit==null) return;
+    if(formId){
+      const it = state.categories.find(function(x){ return x.id===formId; });
+      if(it){ it.name=name; it.limit=limit; }
+    }else{
+      state.categories.push({id:uid(), name:name, limit:limit});
+    }
+  }else if(formKind==='tx'){
+    const amount = requireMoney('f-amount','an amount', false); if(amount==null) return;
+    const categoryId = val('f-cat');
+    if(!state.categories.some(function(c){ return c.id===categoryId; })){ showErr('Please choose a category.'); return; }
+    const date = parseISO(val('f-date'));
+    if(!date){ showErr('Please enter a valid date.'); return; }
+    const note = String(val('f-note')||'').trim().slice(0,160);
+    if(formId){
+      const it = state.transactions.find(function(x){ return x.id===formId; });
+      if(it){ it.amount=amount; it.categoryId=categoryId; it.date=val('f-date'); it.note=note; }
+    }else{
+      state.transactions.push({id:uid(), amount:amount, categoryId:categoryId, date:val('f-date'), note:note});
+    }
+  }else if(formKind==='debt'){
+    const name = requireName(); if(!name) return;
+    const balance = requireMoney('f-balance','a balance', true); if(balance==null) return;
+    const aprR = parseApr(val('f-apr'));
+    if(aprR.empty){ showErr('Please enter an APR (use 0 if there is none).'); document.getElementById('f-apr').focus(); return; }
+    if(!aprR.ok){ showErr(aprR.err||'Enter a valid APR.'); document.getElementById('f-apr').focus(); return; }
+    const minimum = requireMoney('f-min','a minimum payment', true); if(minimum==null) return;
+    if(formId){
+      const it = state.debts.find(function(x){ return x.id===formId; });
+      if(it){ it.name=name; it.balance=balance; it.apr=aprR.value; it.minimum=minimum; }
+    }else{
+      state.debts.push({id:uid(), name:name, balance:balance, apr:aprR.value, minimum:minimum});
+    }
+  }else if(formKind==='goal'){
+    const name = requireName(); if(!name) return;
+    const target = requireMoney('f-target','a target', false); if(target==null) return;
+    const saved = requireMoney('f-saved','an already-saved amount', true); if(saved==null) return;
+    const monthly = requireMoney('f-monthly','a monthly contribution', true); if(monthly==null) return;
+    const emergency = !!(document.getElementById('f-emergency')&&document.getElementById('f-emergency').checked);
+    if(emergency){
+      state.goals.forEach(function(g){ g.emergency = false; });
+    }
+    if(formId){
+      const it = state.goals.find(function(x){ return x.id===formId; });
+      if(it){ it.name=name; it.target=target; it.saved=saved; it.monthly=monthly; it.emergency=emergency; }
+    }else{
+      state.goals.push({id:uid(), name:name, target:target, saved:saved, monthly:monthly, emergency:emergency});
+    }
+  }else{
+    return;
+  }
+  saveState();
+  closeSheet();
+  render();
+  toast('Saved');
+}
+
+function deleteForm(){
+  if(!formKind || !formId) return;
+  const id = formId;
+  if(formKind==='income') state.income = state.income.filter(function(x){ return x.id!==id; });
+  else if(formKind==='bill') state.bills = state.bills.filter(function(x){ return x.id!==id; });
+  else if(formKind==='cat'){
+    state.categories = state.categories.filter(function(x){ return x.id!==id; });
+    state.transactions = state.transactions.filter(function(x){ return x.categoryId!==id; });
+  }
+  else if(formKind==='tx') state.transactions = state.transactions.filter(function(x){ return x.id!==id; });
+  else if(formKind==='debt') state.debts = state.debts.filter(function(x){ return x.id!==id; });
+  else if(formKind==='goal') state.goals = state.goals.filter(function(x){ return x.id!==id; });
+  saveState();
+  closeSheet();
+  render();
+  toast('Deleted');
+}
+
+/* ---------- actions ---------- */
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ el.classList.remove('on'); }, 2200);
+}
+
+function setView(v){
+  view = v;
+  closeSheet();
+  window.scrollTo(0,0);
+  render();
+}
+
+function togglePaid(id){
+  const b = state.bills.find(function(x){ return x.id===id; });
+  if(!b) return;
+  const k = thisMonthKey();
+  b.paid = b.paid || [];
+  const i = b.paid.indexOf(k);
+  if(i===-1) b.paid.push(k);
+  else b.paid.splice(i,1);
+  b.paid = b.paid.slice(-36);
+  saveState();
+  render();
+}
+
+function loadExample(){
+  state = sanitizeState(exampleData());
+  saveState();
+  closeSheet();
+  view = 'overview';
+  render();
+  toast('Example data loaded');
+}
+
+function clearAll(){
+  state = emptyState();
+  saveState();
+  closeSheet();
+  view = 'overview';
+  planExpanded = false;
+  render();
+  toast('All data cleared');
+}
+
+function exportJson(){
+  try{
+    const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'pack-plan-backup-'+isoDate(today())+'.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    toast('Backup downloaded');
+  }catch(e){
+    toast('Could not export');
+  }
+}
+
+function importJsonFile(file){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onerror = function(){ toast('Could not read that file'); };
+  reader.onload = function(){
+    try{
+      const d = JSON.parse(String(reader.result||''));
+      const next = sanitizeState(d);
+      const count = next.income.length+next.bills.length+next.categories.length+next.transactions.length+next.debts.length+next.goals.length;
+      if(!count && !(d && typeof d==='object')){
+        toast('That file doesn’t look like a '+APP_NAME+' backup');
+        return;
+      }
+      state = next;
+      if(d && d.theme === 'light' || d && d.theme === 'dark'){
+        window.__theme.set(d.theme);
+      }
+      saveState();
+      view = 'overview';
+      closeSheet();
+      render();
+      toast('Imported '+count+' item'+(count===1?'':'s'));
+    }catch(e){
+      toast('Could not import — check that the file is JSON');
+    }
+  };
+  reader.readAsText(file);
+}
+
+function applyExtra(){
+  const el = document.getElementById('extra-pay');
+  if(!el) return;
+  const raw = el.value.trim();
+  let next = 0;
+  if(raw!==''){
+    const r = parseMoneyInput(el.value);
+    if(!r.ok){ toast(r.err||'Enter a valid extra payment'); return; }
+    next = r.value;
+  }
+  if(round2(state.payoff.extra||0) === next) return;
+  state.payoff.extra = next;
+  saveState();
+  const keep = true;
+  render();
+  const again = document.getElementById('extra-pay');
+  if(again && document.activeElement && document.activeElement.id==='extra-pay'){
+    again.focus();
+    const v=again.value;
+    try{ again.setSelectionRange(v.length,v.length); }catch(e){}
+  }
+}
+
+function onClick(e){
+  const a = e.target.closest('[data-act]');
+  if(!a) return;
+  const act = a.getAttribute('data-act');
+  const id = a.getAttribute('data-id');
+  if(act==='view'){ setView(a.getAttribute('data-view')); }
+  else if(act==='close-sheet'){ closeSheet(); }
+  else if(act==='edit-income'){ sheetIncome(id); }
+  else if(act==='edit-bill'){ sheetBill(id); }
+  else if(act==='edit-cat'){ sheetCat(id); }
+  else if(act==='edit-tx'){ sheetTx(id); }
+  else if(act==='edit-debt'){ sheetDebt(id); }
+  else if(act==='edit-goal'){ sheetGoal(id); }
+  else if(act==='save-form'){ saveForm(); }
+  else if(act==='delete-form'){ deleteForm(); }
+  else if(act==='toggle-paid'){ togglePaid(id); }
+  else if(act==='payoff-method'){
+    state.payoff.method = a.getAttribute('data-method')==='avalanche'?'avalanche':'snowball';
+    saveState(); render();
+  }
+  else if(act==='toggle-plan'){ planExpanded = !planExpanded; render(); }
+  else if(act==='theme'){
+    window.__theme.set(a.getAttribute('data-theme')==='light'?'light':'dark');
+    render();
+  }
+  else if(act==='currency'){
+    state.currency = a.getAttribute('data-cur')||'$';
+    const inp = document.getElementById('currency-input');
+    if(inp) inp.value = state.currency;
+    saveState(); render();
+  }
+  else if(act==='export'){ exportJson(); }
+  else if(act==='import'){ const f=document.getElementById('import-file'); if(f) f.click(); }
+  else if(act==='load-example'){
+    const has = state.income.length+state.bills.length+state.categories.length+state.debts.length+state.goals.length;
+    if(has){
+      confirmSheet('Replace what’s here?','Loading example data will replace the numbers currently on this device. They’re clearly labeled examples, not anyone’s real finances.','Load example','confirm-example', false);
+    }else{
+      loadExample();
+    }
+  }
+  else if(act==='confirm-example'){ loadExample(); }
+  else if(act==='clear-all'){
+    confirmSheet('Clear all data?','This removes income, bills, spending, debts, and goals from this device. Export a backup first if you want to keep a copy.','Clear everything','confirm-clear', true);
+  }
+  else if(act==='confirm-clear'){ clearAll(); }
+}
+
+function onChange(e){
+  if(e.target && e.target.id==='f-freq' && formKind==='bill'){
+    const wrap = document.getElementById('f-due-wrap');
+    if(wrap) wrap.innerHTML = dueFields(null, e.target.value);
+  }
+  if(e.target && e.target.id==='import-file'){
+    const f = e.target.files && e.target.files[0];
+    importJsonFile(f);
+    e.target.value = '';
+  }
+}
+
+function onInput(e){
+  if(!e.target) return;
+  if(e.target.id==='f-amount' || e.target.id==='f-freq'){
+    if(formKind==='income') updateIncomePreview();
+  }
+  if(e.target.id==='currency-input'){
+    const v = e.target.value.slice(0,4);
+    state.currency = v || '$';
+    saveState();
+  }
+}
+
+let extraTimer = 0;
+function onExtraBlur(){
+  if(document.getElementById('extra-pay')) applyExtra();
+}
+
+function onKey(e){
+  if(e.key==='Escape'){ if(document.body.classList.contains('sheet-open')){ closeSheet(); e.preventDefault(); } }
+  if(e.key==='Enter' && document.body.classList.contains('sheet-open')){
+    const t = e.target;
+    if(t && (t.tagName==='INPUT' || t.tagName==='SELECT') && t.type!=='textarea'){
+      e.preventDefault();
+      saveForm();
+    }
+  }
+}
+
+document.getElementById('scrim').addEventListener('click', closeSheet);
+document.addEventListener('click', onClick);
+document.addEventListener('change', onChange);
+document.addEventListener('input', onInput);
+document.addEventListener('keydown', onKey);
+document.addEventListener('focusout', function(e){
+  if(e.target && e.target.id==='extra-pay') onExtraBlur();
+  if(e.target && e.target.id==='currency-input'){ render(); }
+});
+document.addEventListener('keydown', function(e){
+  if(e.target && e.target.id==='extra-pay' && e.key==='Enter'){ e.preventDefault(); applyExtra(); }
+});
+
+/* ---------- boot ---------- */
+function registerShellSW(){
+  if(!('serviceWorker' in navigator)) return;
+  try{ navigator.serviceWorker.register('./sw.js').then(null, function(){}); }
+  catch(e){}
+}
+state = loadState();
+document.getElementById('brand').innerHTML = logoMark(44);
+render();
+registerShellSW();
+
+window.__wb = {
+  monthlyEquivalent: monthlyEquivalent,
+  payoffPlan: payoffPlan,
+  round2: round2,
+  getState: function(){ return state; },
+  setState: function(s){ state = sanitizeState(s); saveState(); render(); },
+  monthlyIncome: monthlyIncome,
+  plannedSpending: plannedSpending,
+  leftToAssign: leftToAssign,
+  nextDue: nextDue,
+  goalProjection: goalProjection,
+  billMonthly: billMonthly,
+  spentInMonth: spentInMonth,
+  exampleData: exampleData,
+  loadExample: loadExample,
+  clearAll: clearAll,
+  fmt: fmt,
+  STORE_KEY: STORE_KEY
+};
+</script>
+</body>
+</html>

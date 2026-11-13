@@ -1,0 +1,5 @@
+# Replace DOMAIN with the real host at launch (no https:// prefix in the placeholder only — keep https:// in the URL).
+User-agent: *
+Allow: /
+
+Sitemap: https://DOMAIN/pack-plan/sitemap.xml

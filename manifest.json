@@ -1,0 +1,11 @@
+{
+  "name": "Pack Plan",
+  "short_name": "Pack Plan",
+  "description": "Pack Plan is a free budget tool by Ravenous Wolves. Your data stays on this device.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#121013",
+  "theme_color": "#121013",
+  "lang": "en"
+}
