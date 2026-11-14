@@ -2,6 +2,7 @@
 """Prep-branch checks for Pack Plan: first run, persistence, disclaimer,
 no console errors, 390px wrap fixes, service worker, and no unexpected
 outside calls."""
+HOST = 'https://ravenouswolves.github.io/pack-plan/'  # GitHub Pages test host; swap at the real launch
 import json
 import os
 import re
@@ -78,7 +79,7 @@ check('no apiKey-like strings',
 # Outside URLs in source: only Google Fonts (plus w3.org SVG namespace, not a network call)
 urls = set(re.findall(r'https?://[^\s"\'<>]+', html))
 non_font = [u for u in urls if 'fonts.googleapis.com' not in u and 'fonts.gstatic.com' not in u
-            and 'www.w3.org/2000/svg' not in u and 'https://DOMAIN' not in u]
+            and 'www.w3.org/2000/svg' not in u and 'https://DOMAIN' not in u and HOST not in u]
 check('only Google Fonts as outside calls (plus DOMAIN placeholders and SVG ns)',
       non_font == [], non_font)
 check('Google Fonts preconnect + stylesheet present',
@@ -88,9 +89,9 @@ check('CSP allows Google Fonts',
       and 'Content-Security-Policy' in headers)
 check('SW ignores cross-origin', 'url.origin !== self.location.origin' in sw_src)
 check('SW is network-first for HTML', 'isHTMLRequest' in sw_src and 'network' in sw_src.lower())
-check('DOMAIN placeholder uses /pack-plan/ slug',
-      'https://DOMAIN/pack-plan/' in robots and 'https://DOMAIN/pack-plan/' in sitemap
-      and 'rel="canonical"' in html and 'https://DOMAIN/pack-plan/' in html)
+check('site host uses /pack-plan/ slug',
+      HOST in robots and HOST in sitemap
+      and 'rel="canonical"' in html and HOST in html)
 check('Open Graph tags name Pack Plan',
       'og:title' in html and 'Pack Plan' in html
       and 'property="og:title" content="Pack Plan"' in html

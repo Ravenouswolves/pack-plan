@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Replace DOMAIN with the real host at launch. The app is served under the /pack-plan/ path. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://DOMAIN/pack-plan/</loc></url>
+  <url><loc>https://ravenouswolves.github.io/pack-plan/</loc></url>
 </urlset>
