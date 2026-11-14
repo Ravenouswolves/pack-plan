@@ -103,7 +103,7 @@ check('404.html exists', (ROOT / '404.html').is_file())
 check('manifest.json names Pack Plan',
       (ROOT / 'manifest.json').is_file()
       and 'Pack Plan' in (ROOT / 'manifest.json').read_text())
-check('SW cache is pack-plan-shell-v1', "CACHE = 'pack-plan-shell-v1'" in sw_src)
+check('SW cache is pack-plan-shell-v2', "CACHE = 'pack-plan-shell-v2'" in sw_src)
 
 
 def main():

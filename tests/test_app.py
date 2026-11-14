@@ -35,6 +35,7 @@ def monthly_equivalent(amount, freq):
         'monthly': a,
         'irregular': a,
         'quarterly': a * 4 / 12,
+        'semiannual': a * 2 / 12,
         'yearly': a / 12,
         'once': 0,
     }.get(freq, a)

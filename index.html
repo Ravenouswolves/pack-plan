@@ -499,7 +499,7 @@ const MONTHS = ['January','February','March','April','May','June','July','August
 const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 const INCOME_FREQ = {weekly:'Weekly',biweekly:'Every 2 weeks',semimonthly:'Twice a month',monthly:'Monthly',irregular:'Irregular'};
-const BILL_FREQ = {monthly:'Monthly',weekly:'Weekly',biweekly:'Every 2 weeks',quarterly:'Quarterly',yearly:'Yearly',once:'One-time'};
+const BILL_FREQ = {monthly:'Monthly',weekly:'Weekly',biweekly:'Every 2 weeks',quarterly:'Quarterly',semiannual:'Every 6 months',yearly:'Yearly',once:'One-time'};
 const BILL_CATS = ['Housing','Utilities','Insurance','Subscriptions','Transportation','Health','Food','Debt','Other'];
 
 const P = {
@@ -752,6 +752,7 @@ function monthlyEquivalent(amount, freq){
     case 'monthly': return a;
     case 'irregular': return a;
     case 'quarterly': return a * 4 / 12;
+    case 'semiannual': return a * 2 / 12;
     case 'yearly': return a / 12;
     case 'once': return 0;
     default: return a;
@@ -822,8 +823,8 @@ function nextDue(bill, from){
     return due;
   }
 
-  if(freq === 'quarterly' || freq === 'yearly'){
-    const stepM = freq === 'quarterly' ? 3 : 12;
+  if(freq === 'quarterly' || freq === 'semiannual' || freq === 'yearly'){
+    const stepM = freq === 'quarterly' ? 3 : (freq === 'semiannual' ? 6 : 12);
     const anchor = bill.anchor && parseISO(bill.anchor) ? parseISO(bill.anchor) : dateClamped(y, m, Number(bill.dueDay)||1);
     const ad = anchor.getDate();
     // Latest occurrence on or before this month's end, for overdue detection
@@ -1540,7 +1541,7 @@ function sheetBill(id){
     +formActions(!!item));
 }
 function dueFields(item, freq){
-  const needsDate = freq==='weekly'||freq==='biweekly'||freq==='quarterly'||freq==='yearly'||freq==='once';
+  const needsDate = freq==='weekly'||freq==='biweekly'||freq==='quarterly'||freq==='semiannual'||freq==='yearly'||freq==='once';
   if(needsDate){
     const val = (item && item.anchor) || isoDate(today());
     return field('Next due date', textInput('f-anchor', val, {type:'date', aria:'Due date'}), 'f-anchor');
@@ -1642,7 +1643,7 @@ function saveForm(){
     const amount = requireMoney('f-amount','an amount', true); if(amount==null) return;
     const frequency = BILL_FREQ[val('f-freq')] ? val('f-freq') : 'monthly';
     let dueDay = 1, anchor = '';
-    const needsDate = frequency==='weekly'||frequency==='biweekly'||frequency==='quarterly'||frequency==='yearly'||frequency==='once';
+    const needsDate = frequency==='weekly'||frequency==='biweekly'||frequency==='quarterly'||frequency==='semiannual'||frequency==='yearly'||frequency==='once';
     if(needsDate){
       const d = parseISO(val('f-anchor'));
       if(!d){ showErr('Please enter a valid due date.'); return; }

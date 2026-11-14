@@ -1,5 +1,5 @@
 /* Conservative offline shell. Network-first for HTML. Never intercepts cross-origin requests (Google Fonts stay uncached). */
-const CACHE = 'pack-plan-shell-v1';
+const CACHE = 'pack-plan-shell-v2';
 const SHELL = [
   './',
   './index.html',
